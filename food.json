@@ -1,13 +1,11 @@
-"providers" : [
-  {
-    "name": "tito",
-    "address": "monroe 1760",
-    "delivery-time": "5hs",
-    "products":[
-      {
-        "description": "eucanuba 1",
-        "price": "123"
-      }
-    ]
-  }
-]
+{
+	"providers": [{
+		"name": "tito",
+		"address": "monroe 1760",
+		"delivery-time": "5hs",
+		"products": [{
+			"description": "eucanuba 1",
+			"price": "123"
+		}]
+	}]
+}
