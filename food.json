@@ -3,9 +3,19 @@
 		"name": "tito",
 		"address": "monroe 1760",
 		"delivery-time": "5hs",
-		"products": [{
-			"description": "eucanuba 1",
-			"price": "123"
-		}]
+		"products": [
+      {
+  			"description": "eucanuba 1",
+  			"price": "123"
+  		},
+      {
+  			"description": "eucanuba 2",
+  			"price": "200"
+  		},
+      {
+  			"description": "eucanuba 3",
+  			"price": "300"
+  		},
+    ]
 	}]
 }
