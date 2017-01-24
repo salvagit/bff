@@ -13,16 +13,8 @@ function getParameterByName(name, url) {
 }
 
 var Main = {
-  addr: '',
   init: function () {
     this.getProviders();
-    Main.addr = decodeURIComponent(getParameterByName('q'));
-  },
-  bindActions: function () {
-    document.querySelector('.search-food').addEventListener('click', function(e){
-      e.preventDefault();
-      console.log('serching ..');
-    });
   },
   getProviders: function () {
     fetch('http://salva.io/bff/food.json')
@@ -31,16 +23,19 @@ var Main = {
   },
   filterFood: function (data) {
     var filterData = data.providers.filter(function(el){
-      return el.address === Main.addr;
+      return el.id === getParameterByName('id');
     });
     this.renderFood(filterData);
   },
   renderFood: function (data) {
+    document.getElementsByClassName('food-container')[0].innerHTML = JSON.stringify(data);
+    /*
     data.forEach(function(el){
       el.products.forEach(function(prod){
         Main.renderFoodItem(prod, el);
       });
     });
+    */
   },
   renderFoodItem: function (prod, provider) {
     var tpl = document.querySelector('#foodItem').innerHTML,

@@ -4,14 +4,14 @@ var Main = {
   init: function () {
     console.log('Main Init');
     var bgImg = "url('images/image" + Math.ceil(Math.random() * 5) +".jpg' )";
-    document.getElementsByClassName('container-fluid')[0].style.backgroundImage = bgImg
+    document.getElementsByClassName('container-fluid')[0].style.backgroundImage = bgImg;
     this.bindActions();
   },
   bindActions: function () {
     document.querySelector('.search-food').addEventListener('click', function(e){
       e.preventDefault();
       window.location = './alimentos-por-zona.html?q=' +
-      encodeURI(this.parentNode.getElementsByTagName('input')[0].value)
+      encodeURI(this.parentNode.getElementsByTagName('input')[0].value);
     });
   }
 };
