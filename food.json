@@ -1,63 +1,47 @@
 {
-	"providers": [
-    {
-  		"id": "1",
-  		"name": "tito",
-  		"address": "monroe 1760",
-  		"delivery-time": "5hs",
-  		"products": [
-        {
-    			"description": "eucanuba 1",
-    			"price": "123"
-    		},
-        {
-    			"description": "eucanuba 2",
-    			"price": "200"
-    		},
-        {
-    			"description": "eucanuba 3",
-    			"price": "300"
-    		}
-      ]
-  	},
-    {
-  		"id": "2",
-  		"name": "polytech",
-  		"address": "cabildo 1760",
-  		"delivery-time": "5hs",
-  		"products": [
-        {
-    			"description": "eucanuba 1",
-    			"price": "123"
-    		},
-        {
-    			"description": "eucanuba 2",
-    			"price": "200"
-    		},
-        {
-    			"description": "eucanuba 3",
-    			"price": "300"
-    		}
-      ]
-  	},
-    {
-  		"id": "3",
-  		"address": "libertador 1760",
-  		"delivery-time": "5hs",
-  		"products": [
-        {
-    			"description": "eucanuba 1",
-    			"price": "123"
-    		},
-        {
-    			"description": "eucanuba 2",
-    			"price": "200"
-    		},
-        {
-    			"description": "eucanuba 3",
-    			"price": "300"
-    		}
-      ]
-  	}
-  ]
+	"providers": [{
+		"id": "1",
+		"name": "tito",
+		"address": "monroe 1760",
+		"delivery-time": "5hs",
+		"products": [{
+			"description": "eucanuba 1",
+			"price": "123"
+		}, {
+			"description": "eucanuba 2",
+			"price": "200"
+		}, {
+			"description": "eucanuba 3",
+			"price": "300"
+		}]
+	}, {
+		"id": "2",
+		"name": "polytech",
+		"address": "cabildo 1760",
+		"delivery-time": "5hs",
+		"products": [{
+			"description": "eucanuba 1",
+			"price": "123"
+		}, {
+			"description": "eucanuba 2",
+			"price": "200"
+		}, {
+			"description": "eucanuba 3",
+			"price": "300"
+		}]
+	}, {
+		"id": "3",
+		"address": "libertador 1760",
+		"delivery-time": "5hs",
+		"products": [{
+			"description": "eucanuba 1",
+			"price": "223"
+		}, {
+			"description": "eucanuba 2",
+			"price": "300"
+		}, {
+			"description": "eucanuba 3",
+			"price": "400"
+		}]
+	}]
 }
