@@ -8,10 +8,17 @@ var Main = {
     this.bindActions();
   },
   bindActions: function () {
-    document.querySelector('.search-food').addEventListener('click', function(e){
+    var form = document.getElementById('searchForm');
+
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
       window.location = './alimentos-por-zona.html?q=' +
-      encodeURI(this.parentNode.getElementsByTagName('input')[0].value);
+      encodeURI(this.getElementsByTagName('input')[0].value);
+    });
+
+    document.querySelector('.search-food').addEventListener('click', function(e){
+      e.preventDefault();
+      form.dispatchEvent('submit');
     });
   }
 };
