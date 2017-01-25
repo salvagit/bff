@@ -5,6 +5,9 @@
   "start_url": "./",
   "display": "standalone",
   "background_color": "red",
+  "background": {
+    "scripts": ["background.js"]
+  },
   "theme_color": "aliceblue",
   "default_locale": "es",
   "orientation": "portrait-primary",
