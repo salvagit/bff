@@ -12,6 +12,7 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/styles.css">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -25,23 +26,36 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="container-fluid">
-          <h1>Alimento Para Mascotas</h1>
-          <h2>Alimentos por zona</h2>
-          <!--div class="row col-xs-10 col-md-10 col-md-offset-2 col-xs-offset-1">
-            <form class="form-horizontal enter-addr">
-              <div class="form-group form-group-lg">
-                <div class="col-sm-10 input-group">
-                  <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Ingrese Su Direccion">
-                  <span class="input-group-addon row search-food">Buscar</span>
-                </div>
-              </div>
-            </form>
-          </div-->
+        <main>
 
-          <div class="list-group food-container"></div>
+          <header class="header">
+            <button class="hamburguer-button js-slideout-toggle"></button>
+            <h1>Pichichos</h1>
+          </header>
 
-        </div>
+          <div class="content">
+            <article class="content-show">
+              <section class="content-banner">
+                <img class="content-banner-image" src="images/image5.jpg" alt="alimento para mascotas" />
+              </section>
+              <section class="content-list"></section>
+
+            </article>
+          </div>
+
+          <footer class="footer">
+            <p>2017 Pichifood. Todos los derechos reservados.</p>
+            <p>El uso del sitio implica la aceptación de los <a href="#">términos y condiciones</a> y de las <a href="#">políticas de provacidad</a>.</p>
+          </footer>
+
+        </main>
+
+        <script id="foodItem" type="text/template">
+          <a href="#" class="list-item-event">
+            <h4 class="title"></h4>
+            <button class="description">$price</button>
+          </a>
+        </script>
         <!-- Latest compiled and minified CSS -->
 
         <!-- Latest compiled and minified JavaScript -->
@@ -61,12 +75,6 @@
           ga('create', 'UA-90743612-1', 'auto');
           ga('send', 'pageview');
 
-        </script>
-        <script id="foodItem" type="text/template">
-          <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading title"></h4>
-            <p class="list-group-item-text description"></p>
-          </a>
         </script>
     </body>
 </html>

@@ -49,7 +49,8 @@ var Main = {
     el.getElementsByTagName('a')[0].href = './alimento.html?id=' + provider.id;
     el.querySelector('.title').innerHTML = prod.description;
     el.querySelector('.description').innerHTML = '$' + prod.price;
-    document.getElementsByClassName('food-container')[0].appendChild(el);
+    console.log(el.getElementsByTagName('a'));
+    document.getElementsByClassName('content-list')[0].appendChild(el.getElementsByTagName('a')[0]);
   }
 };
 
