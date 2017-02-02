@@ -389,8 +389,10 @@ body { width: 100%; }
 
 // footer
 .footer {
+  display: inline-block;
+  width: 100%;
   background-color: #232d37;
-  padding: 25px 15px;
+  padding: 25px 15px 0px;
   text-align: center;
 
   p {
