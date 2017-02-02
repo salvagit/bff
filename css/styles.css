@@ -45,18 +45,21 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-.container-fluid {
+.content {
   background: no-repeat center center;
   width: 100%;
   height: 100vh;
   margin: 0;
   padding: 0; }
 
+main.content {
+  height: 100%; }
+
 p {
   margin: 0; }
 
 .enter-addr {
-  margin-top: 60vh; }
+  margin-top: 15%; }
 
 .content-list {
   width: 100%;
@@ -126,51 +129,6 @@ body {
 .content {
   flex: 1; }
 
-.menu {
-  background-color: #2b333d;
-  display: flex;
-  /* use the flex model */
-  min-height: 100%;
-  flex-direction: column;
-  /* learn more: http://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */ }
-  .menu .slogan {
-    color: #fff;
-    font-size: 14px;
-    padding: 30px 0;
-    text-align: center; }
-  .menu .heart {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    color: #c0392b;
-    text-decoration: none; }
-
-.menu-content {
-  flex: 1; }
-
-.menu-list {
-  color: #fff;
-  font-size: 16px; }
-  .menu-list li {
-    border-bottom: 1px dashed #4f6071;
-    display: block; }
-    .menu-list li a {
-      color: inherit;
-      display: block;
-      padding: 20px 30px;
-      text-decoration: none; }
-
-.menu-footer {
-  background-color: #242d36;
-  text-align: center;
-  padding: 15px; }
-  .menu-footer p {
-    color: #465768;
-    font-size: 10px;
-    line-height: 1.4; }
-    .menu-footer p a {
-      color: inherit; }
-
 .header {
   background-color: #eaebed;
   padding: 13px 0 9px 0;
@@ -182,19 +140,12 @@ body {
       display: inline-block;
       width: 200px; }
 
-.hamburguer-button {
-  background: url("../img/hamburguer-icon.png") no-repeat scroll center center transparent;
-  background-size: 22px auto;
-  border: none;
-  display: block;
-  outline: none;
-  padding: 5px;
-  width: 32px;
-  height: 33px;
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%); }
+main.content .content-show {
+  margin-top: 20%; }
+
+.title-container {
+  color: black;
+  text-align: center; }
 
 .content-search {
   padding: 15px; }
@@ -345,10 +296,11 @@ body {
       font-size: 16px; }
 
 .footer {
-  display: inline-block;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   background-color: #232d37;
-  padding: 25px 15px 0px;
+  padding: 25px 15px 10px;
   text-align: center; }
   .footer p {
     color: #465769;
@@ -360,30 +312,5 @@ body {
     font-size: 14px;
     line-height: normal;
     margin-bottom: 25px; }
-
-.slideout-menu {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 0;
-  width: 281px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  display: none; }
-
-.slideout-panel {
-  position: relative;
-  z-index: 1;
-  will-change: transform; }
-
-.slideout-open,
-.slideout-open body,
-.slideout-open .slideout-panel {
-  overflow: hidden; }
-
-.slideout-open .slideout-menu {
-  display: flex; }
 
 /*# sourceMappingURL=styles.css.map */

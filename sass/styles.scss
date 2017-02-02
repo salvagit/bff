@@ -1,6 +1,6 @@
 @import 'reset';
 
-.container-fluid {
+.content {
   background: no-repeat center center;
   width: 100%;
   height: 100vh;
@@ -8,12 +8,16 @@
   padding: 0;
 }
 
+main.content {
+  height: 100%;
+}
+
 p {
  margin: 0;
 }
 
 .enter-addr {
- margin-top: 60vh;
+ margin-top: 15%;
 }
 
 .content-list {
@@ -48,7 +52,6 @@ p {
     width: 60%;
   }
 }
-
 
 // font-face
 @font-face{
@@ -102,62 +105,6 @@ body { width: 100%; }
 
 .content { flex: 1; }
 
-// menu
-.menu {
-  background-color: #2b333d;
-  display: flex;  /* use the flex model */
-  min-height: 100%;
-  flex-direction: column;  /* learn more: http://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/ */
-
-  .slogan {
-    color: #fff;
-    font-size: 14px;
-    padding: 30px 0;
-    text-align: center;
-  }
-
-  .heart {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    color: #c0392b;
-    text-decoration: none;
-  }
-}
-
-.menu-content { flex: 1; }
-
-.menu-list {
-  color: #fff;
-  font-size: 16px;
-
-  li {
-    border-bottom: 1px dashed #4f6071;
-    display: block;
-
-    a {
-      color: inherit;
-      display: block;
-      padding: 20px 30px;
-      text-decoration: none;
-    }
-  }
-}
-
-.menu-footer {
-  background-color: #242d36;
-  text-align: center;
-  padding: 15px;
-
-  p {
-    color: #465768;
-    font-size: 10px;
-    line-height: 1.4;
-
-    a { color: inherit; }
-  }
-}
-
 // header
 .header {
   background-color: #eaebed;
@@ -175,19 +122,15 @@ body { width: 100%; }
   }
 }
 
-.hamburguer-button {
-  background: url('../img/hamburguer-icon.png') no-repeat scroll center center transparent;
-  background-size: 22px auto;
-  border: none;
-  display: block;
-  outline: none;
-  padding: 5px;
-  width: 32px;
-  height: 33px;
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
+main.content {
+  .content-show {
+    margin-top: 20%;
+  }
+}
+
+.title-container {
+  color: black;
+  text-align: center;
 }
 
 // content
@@ -293,7 +236,6 @@ body { width: 100%; }
   z-index: -1;
 }
 
-// UX_Categoria1_V3
 .content-list {
 
   .list-item {
@@ -389,10 +331,11 @@ body { width: 100%; }
 
 // footer
 .footer {
-  display: inline-block;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   background-color: #232d37;
-  padding: 25px 15px 0px;
+  padding: 25px 15px 10px;
   text-align: center;
 
   p {
@@ -408,35 +351,4 @@ body { width: 100%; }
     line-height: normal;
     margin-bottom: 25px;
   }
-}
-
-// slideout
-.slideout-menu {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 0;
-  width: 281px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  display: none;
-}
-
-.slideout-panel {
-  position: relative;
-  z-index: 1;
-  will-change: transform;
-}
-
-.slideout-open,
-.slideout-open body,
-.slideout-open .slideout-panel {
-  overflow: hidden;
-}
-
-.slideout-open .slideout-menu {
-  // display: block;
-  display: flex;
 }
