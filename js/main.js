@@ -12,13 +12,17 @@ var Main = {
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      e.stopPropagation();
       window.location = './alimentos-por-zona.html?q=' +
-      encodeURI(this.getElementsByTagName('input')[0].value);
+                         encodeURI(this.getElementsByTagName('input')[0].value);
     });
 
     document.querySelector('.search-food').addEventListener('click', function(e){
       e.preventDefault();
-      form.dispatchEvent('submit');
+      console.log(this, form);
+      var submitForm = new Event('submit');
+      form.dispatchEvent(submitForm);
+      // document.getElementById('searchForm').submit();
     });
   }
 };
