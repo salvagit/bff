@@ -28,26 +28,118 @@
         <!-- Add your site or application content here -->
         <main>
 
-          <header class="header">
-          </header>
+          <header class="header"></header>
+
+          <section class="content-banner">
+            <h1 class="content-banner-title">Pichichos</h1>
+            <img class="content-banner-image" src="images/image5.jpg" alt="alimento para mascotas" />
+          </section>
 
           <div class="content">
             <article class="content-show">
-              <section class="content-banner">
-                <h1 class="content-banner-title">Pichichos</h1>
-                <img class="content-banner-image" src="images/image5.jpg" alt="alimento para mascotas" />
-              </section>
               <section class="content-list"></section>
+
+              <section class="checkout-container">
+                <div class="checkout">
+                  <h3>pichi cart</h3>
+                  <hr>
+                  <p class="address">monroe 1234</p>
+
+                  <hr>
+                    <div class="prod-container">
+                      <span class="row">
+                        <h4>Product Title:</h4>
+                        <p>$123</p>
+                      </span>
+                      <span class="row">
+                        <p class="prod-desc">description:</p>
+                        <p>$0</p>
+                      </span>
+                    </div>
+                    editar / eliminar
+
+                  <hr>
+                  <span class="row">
+                    <h4>Subtotal:</h4>
+                    <p>$123</p>
+                  </span>
+
+                  <span class="row">
+                    <h4>Impuesto:</h4>
+                    <p>$0</p>
+                  </span>
+
+                  <span class="row">
+                    <h4>Entrega:</h4>
+                    <p>$0</p>
+                  </span>
+
+                  <span class="row">
+                    <h4>Total:</h4>
+                    <p>$123</p>
+                  </span>
+
+                  <button type="button" class="btn btn-danger btn-compra">
+                    CONTINUAR COMPRA
+                  </button>
+
+                </div>
+              </section>
 
             </article>
           </div>
 
           <footer class="footer">
             <p>2017 Pichifood. Todos los derechos reservados.</p>
-            <p>El uso del sitio implica la aceptación de los <a href="#">términos y condiciones</a> y de las <a href="#">políticas de provacidad</a>.</p>
+            <p>El uso del sitio implica la aceptación de los <a href="#">términos y condiciones</a> y de las <a href="#">políticas de privacidad</a>.</p>
           </footer>
 
         </main>
+
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content center" style="max-width:400px;">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Product title</h4>
+              </div>
+              <div class="modal-body">
+
+                <div class="row">
+                  <div class="col-md-10 col-md-offset-1">
+                    notas:
+                    <textarea class="form-control" rows="3"></textarea>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                  <div class="col-sm-9">
+                    <button class="btn btn-default left round" type="submit">-</button>
+                    <div class="col-xs-4">
+                      <input type="text" class="form-control">
+                    </div>
+                    <button class="btn btn-default round" type="submit">+</button>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                  <div class="col-sm-2 right">
+                    <h4 class="price">$123</h4>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger w100">AGREGAR AL CARLITOS</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
         <script id="foodItem" type="text/template">
           <a href="#" class="list-item-event">

@@ -1,4 +1,4 @@
-'use stricts';
+"use strict";
 
 function getParameterByName(name, url) {
     if (!url) {
@@ -46,11 +46,18 @@ var Main = {
     var tpl = document.querySelector('#foodItem').innerHTML,
         el = document.createElement('div');
     el.innerHTML = tpl;
-    el.getElementsByTagName('a')[0].href = './alimento.html?id=' + provider.id;
+    // el.getElementsByTagName('a')[0].href = './alimento.html?id=' + provider.id;
+    el.getElementsByTagName('a')[0].dataset.prod_id = provider.id;
+    el.getElementsByTagName('a')[0].addEventListener('click', this.clickFoodItem);
     el.querySelector('.title').innerHTML = prod.description;
     el.querySelector('.description').innerHTML = '$' + prod.price;
-    console.log(el.getElementsByTagName('a'));
     document.getElementsByClassName('content-list')[0].appendChild(el.getElementsByTagName('a')[0]);
+  },
+
+  clickFoodItem: function (e) {
+    e.preventDefault();
+    console.log(e.target.dataset);
+    $('#modal').modal('show');
   }
 };
 

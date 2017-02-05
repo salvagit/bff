@@ -1,4 +1,4 @@
-'use stricts';
+"use strict";
 
 function getParameterByName(name, url) {
     if (!url) {
