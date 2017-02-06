@@ -1,5 +1,12 @@
 @import 'reset';
 
+* {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
 // font-face
 @font-face{
   font-family: 'MuseoSans100';
@@ -153,7 +160,8 @@ main.content {
     div {
       .content-show {
         .content-list {
-          display: none;
+          //display: none;
+          opacity: 0;
         }
         .checkout-container {
           .checkout {

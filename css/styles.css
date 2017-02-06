@@ -45,6 +45,12 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+* {
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out; }
+
 @font-face {
   font-family: 'MuseoSans100';
   src: url("../font/museosans-100-webfont.eot");
@@ -168,7 +174,7 @@ main.content {
       width: 100%;
       margin: 20px auto; }
   main.content.checkout-mobile div .content-show .content-list {
-    display: none; }
+    opacity: 0; }
   main.content.checkout-mobile div .content-show .checkout-container .checkout {
     width: 100%;
     display: block;
