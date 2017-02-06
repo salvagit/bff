@@ -198,33 +198,35 @@ main.content {
   width: 100%;
   z-index: 1030; }
 
-main.checkout-mobile {
-  background-color: red; }
-  main.checkout-mobile .content .content-show .checkout-container .checkout {
+.content-show .checkout-container .checkout {
+  background-color: #f7f8f9; }
+  .content-show .checkout-container .checkout .row {
+    margin: 0; }
+    .content-show .checkout-container .checkout .row h4,
+    .content-show .checkout-container .checkout .row .prod-desc {
+      padding: 0;
+      float: left; }
+    .content-show .checkout-container .checkout .row p {
+      float: right; }
+  .content-show .checkout-container .checkout .btn-compra {
     width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    z-index: 1020;
-    background-color: #fff;
-    top: 0;
-    padding: 10%; }
-    main.checkout-mobile .content .content-show .checkout-container .checkout .row {
-      margin: 0; }
-      main.checkout-mobile .content .content-show .checkout-container .checkout .row h4,
-      main.checkout-mobile .content .content-show .checkout-container .checkout .row .prod-desc {
-        padding: 0;
-        float: left; }
-      main.checkout-mobile .content .content-show .checkout-container .checkout .row p {
-        float: right; }
-    main.checkout-mobile .content .content-show .checkout-container .checkout .btn-compra {
-      width: 100%;
-      margin: 20px auto 0; }
-  main.checkout-mobile .footer {
-    padding-bottom: 0; }
-  main.checkout-mobile .menu-footer__cart-meta {
-    bottom: auto;
-    top: 0; }
+    margin: 20px auto; }
+
+main.checkout-mobile .content .content-show .content-list {
+  display: none; }
+main.checkout-mobile .content .content-show .checkout-container .checkout {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  z-index: 1020;
+  top: 0;
+  padding: 10%; }
+main.checkout-mobile .footer {
+  display: none; }
+main.checkout-mobile .menu-footer__cart-meta {
+  bottom: auto;
+  top: 0; }
 
 @media (min-width: 900px) {
   .menu-footer__cart-meta {
@@ -240,7 +242,6 @@ main.checkout-mobile {
       float: right; }
       .content .content-show .checkout-container .checkout {
         max-width: 400px;
-        background-color: #f7f8f9;
         display: block;
         padding: 20px;
         margin: 20px auto;

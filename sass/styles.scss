@@ -183,11 +183,34 @@ main.content {
   z-index: 1030;
 }
 
+.content-show {
+  .checkout-container {
+    .checkout {
+      background-color: $soft-gray;
+      .row {
+        margin: 0;
+        h4,
+        .prod-desc {
+          padding: 0;
+          float: left;
+        }
+        p {float: right;}
+      }
+      .btn-compra {
+        width: 100%;
+        margin: 20px auto;
+      }
+    }
+  }
+}
+
 main {
   &.checkout-mobile {
-    background-color: red;
     .content {
       .content-show {
+        .content-list {
+          display: none;
+        }
         .checkout-container {
           .checkout {
             width: 100%;
@@ -195,28 +218,15 @@ main {
             display: block;
             position: absolute;
             z-index: 1020;
-            background-color: #fff;
             top: 0;
             padding: 10%;
-            .row {
-              margin: 0;
-              h4,
-              .prod-desc {
-                padding: 0;
-                float: left;
-              }
-              p {float: right;}
-            }
-            .btn-compra {
-              width: 100%;
-              margin: 20px auto 0;
-            }
+
           }
         }
       }
     }
     .footer {
-      padding-bottom: 0;
+      display: none;
     }
     .menu-footer__cart-meta {
       bottom: auto;
@@ -243,7 +253,6 @@ main {
         .checkout {
           max-width: 400px;
 
-          background-color: $soft-gray;
 
           display: block;
 
@@ -251,7 +260,6 @@ main {
           margin: 20px auto;
 
           border-radius: 5px;
-
         }
       }
     }
