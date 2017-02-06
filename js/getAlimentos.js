@@ -58,6 +58,11 @@ var Main = {
     e.preventDefault();
     console.log(e.target.dataset);
     $('#modal').modal('show');
+  },
+
+  doCheckoutMobile: function () {
+    // document.querySelector('.checkout-container > .checkout').classList.toggle('mobile');
+    document.querySelector('main').classList.toggle('checkout-mobile');
   }
 };
 
