@@ -216,7 +216,6 @@ main.checkout-mobile .content .content-show .content-list {
   display: none; }
 main.checkout-mobile .content .content-show .checkout-container .checkout {
   width: 100%;
-  height: 100%;
   display: block;
   position: absolute;
   z-index: 1020;
@@ -413,12 +412,12 @@ main.checkout-mobile .menu-footer__cart-meta {
     line-height: 1.4; }
     .footer p a {
       color: inherit; }
-  .footer a:nth-child(2) {
-    margin: 0 30px; }
   .footer p:first-child {
     font-size: 14px;
     line-height: normal;
     margin-bottom: 25px; }
+  .footer .footer__social-icons a:nth-child(2) {
+    margin: 0 30px; }
   @media screen and (max-width: 900px) {
     .footer {
       padding-bottom: 60px; } }
