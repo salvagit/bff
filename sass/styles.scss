@@ -4,6 +4,30 @@ $soft-blue: #6b9ac0;
 $soft-gray: #f7f8f9;
 $red: #ef3b41;
 
+// box-sizing for everyone!
+html { box-sizing: border-box; }
+
+html, body {
+
+  color: #343e44;
+  font-family: "HelveticaNeueLTStd", Helvetica, sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+
+  // font-family: MuseoSans100, Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+body { width: 100%; }
+p { margin: 0; }
+
+
 .w100 {width: 100%;}
 .center {margin: 0 auto;}
 .left {float: left;}
@@ -39,36 +63,6 @@ hr { border-top: 1px solid #9db2c3!important; }
   font-style: normal;
 }
 
-// box-sizing for everyone!
-html { box-sizing: border-box; }
-/*
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-*/
-html, body {
-
-  color: #343e44;
-  font-family: "HelveticaNeueLTStd", Helvetica, sans-serif;
-  -webkit-font-smoothing: subpixel-antialiased;
-  -webkit-text-size-adjust: none;
-  -ms-text-size-adjust: none;
-  text-size-adjust: none;
-
-  // font-family: MuseoSans100, Verdana, Geneva, sans-serif;
-  font-size: 12px;
-  height: 100%;
-
-  margin: 0;
-  padding: 0;
-
-  // -webkit-text-size-adjust: none;
-  // -webkit-font-smoothing: antialiased;
-}
-
-body { width: 100%; }
-p { margin: 0; }
-
 // header
 .header {
   background-color: #eaebed;
@@ -99,14 +93,15 @@ p { margin: 0; }
 }
 
 main.content {
-  flex: 1;
   background: no-repeat center center;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
   .content-show {
-    margin-top: 20%;
+    section {
+      min-height: calc(100vh - 285px);
+    }
   }
 }
 
@@ -206,7 +201,7 @@ main.content {
 
 main {
   &.checkout-mobile {
-    .content {
+    div {
       .content-show {
         .content-list {
           display: none;
@@ -219,7 +214,6 @@ main {
             z-index: 1020;
             top: 0;
             padding: 10%;
-
           }
         }
       }
@@ -239,8 +233,8 @@ main {
   .menu-footer__cart-meta { display: none; }
 
   .content {
-    padding: 0 10%;
     .content-show {
+      padding: 0 10%;
       .content-list {
         width: 60%;
       }
@@ -251,7 +245,6 @@ main {
 
         .checkout {
           max-width: 400px;
-
 
           display: block;
 
