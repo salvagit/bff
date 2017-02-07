@@ -9,11 +9,11 @@
 			"description": "eucanuba 1",
 			"price": "123"
 		}, {
-			"_id": "1",
+			"_id": "2",
 			"description": "eucanuba 2",
 			"price": "200"
 		}, {
-			"_id": "1",
+			"_id": "3",
 			"description": "eucanuba 3",
 			"price": "300"
 		}]
