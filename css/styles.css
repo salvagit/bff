@@ -194,10 +194,10 @@ main.content {
   overflow-y: hidden; }
 
 .content-banner-title {
+  margin: 0;
   color: #000;
   font-family: MuseoSans500, Verdana, Geneva, sans-serif;
   font-size: 24px;
-  position: absolute;
   left: 15px;
   bottom: 15px;
   z-index: 1; }
