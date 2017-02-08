@@ -64,7 +64,6 @@ var Main = {
         $modal = $($('#pichiModal').html());
     Main.selectedItem = prodObj;
     Main.selectedItem.cantidad = 1;
-    Main.modal = $modal;
     $modal.find('.modal-title').html(prodObj.description);
     $modal.find('.price').html('$' + prodObj.price);
     $modal.find('.addToCart').on('click', Main.addToCart);
@@ -78,9 +77,11 @@ var Main = {
   },
 
   addToCart: function() {
-    // if (undefined === localStorage['pichikout']) localStorage['pichikout'] = JSON.stringify([]);
-    localStorage['pichikout'] = JSON.stringify(Object.assign({}, JSON.parse(localStorage['pichikout']), Main.selectedItem));
-    Main.modal.modal('hide');
+    if (undefined === localStorage['pichikout']) localStorage['pichikout'] = JSON.stringify([]);
+    var lso = JSON.parse(localStorage['pichikout']);
+    lso.push(Main.selectedItem);
+    localStorage['pichikout'] = JSON.stringify(lso);
+    $('#modal').modal('hide');
   },
 
   doCheckoutMobile: function () {
