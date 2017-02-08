@@ -69,6 +69,7 @@ var Main = {
     $modal.on('show.bs.modal', Main.onOpenModal(data))
     .on('hidden.bs.modal', function(){
       document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'))
+      document.querySelector('body').removeChild(document.querySelector('#modal'))
     })
     .modal('show');
   },
