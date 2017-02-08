@@ -38,6 +38,7 @@ $red: #ef3b41;
 
 // box-sizing for everyone!
 * { box-sizing: border-box; }
+*:focus { outline: none!important; }
 
 html, body {
   color: #343e44;
@@ -55,7 +56,10 @@ html, body {
   padding: 0;
 }
 
-body { width: 100%; }
+body {
+  width: 100%;
+  &.modal-open {padding-right: 0!important;}
+}
 p { margin: 0; }
 hr { border-top: 1px solid #9db2c3!important; }
 
@@ -63,7 +67,7 @@ hr { border-top: 1px solid #9db2c3!important; }
 .center {margin: 0 auto;}
 .left {float: left;}
 .right {float: right!important;}
-.round {border-radius: 50%;}
+.round {border-radius: 50%!important;}
 
 // header
 .header {

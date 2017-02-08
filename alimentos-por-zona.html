@@ -124,57 +124,60 @@
 
         </main>
 
-        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content center" style="max-width:400px;">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">Product title</h4>
-              </div>
-              <div class="modal-body">
-
-                <div class="row">
-                  <div class="col-md-10 col-md-offset-1">
-                    notas:
-                    <textarea class="form-control" rows="3"></textarea>
-                  </div>
-                </div>
-
-                <hr>
-
-                <div class="row">
-                  <div class="col-sm-9">
-                    <button class="btn btn-default left round" type="submit">-</button>
-                    <div class="col-xs-4">
-                      <input type="text" class="form-control">
-                    </div>
-                    <button class="btn btn-default round" type="submit">+</button>
-                  </div>
-                </div>
-
-                <hr>
-
-                <div class="row">
-                  <div class="col-sm-2 right">
-                    <h4 class="price">$123</h4>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger w100">AGREGAR AL CARLITOS</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
         <script id="foodItem" type="text/template">
           <a href="#" class="list-item-event">
             <h4 class="title"></h4>
             <button class="pichi-button description">$price</button>
           </a>
         </script>
+
+        <script id="pichiModal" type="text/template">
+          <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content center" style="max-width:400px;">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="gridSystemModalLabel">Title</h4>
+                </div>
+                <div class="modal-body">
+
+                  <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                      notas:
+                      <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <button class="btn btn-default left round" onclick="Main.less(this)">-</button>
+                      <div class="col-xs-4">
+                        <input id="cantidad" type="text" class="form-control" value="1" disabled="disabled" />
+                      </div>
+                      <button class="btn btn-default round" onclick="Main.add(this)">+</button>
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-sm-2 right">
+                      <h4 class="price">$0</h4>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger w100">AGREGAR AL CARLITOS</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+        </script>
+
         <!-- Latest compiled and minified CSS -->
 
         <!-- Latest compiled and minified JavaScript -->
