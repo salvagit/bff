@@ -152,11 +152,11 @@
 
                   <div class="row">
                     <div class="col-sm-9">
-                      <button class="btn btn-default left round" onclick="Main.less(this)">-</button>
+                      <button class="btn btn-default left round" onclick="Main.updatePrice(this, false)">-</button>
                       <div class="col-xs-4">
                         <input id="cantidad" type="text" class="form-control" value="1" disabled="disabled" />
                       </div>
-                      <button class="btn btn-default round" onclick="Main.add(this)">+</button>
+                      <button class="btn btn-default round" onclick="Main.updatePrice(this, true)">+</button>
                     </div>
                   </div>
 
@@ -171,7 +171,7 @@
 
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger w100">AGREGAR AL CARLITOS</button>
+                  <button type="button" class="addToCart btn btn-danger w100">AGREGAR AL CARLITOS</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

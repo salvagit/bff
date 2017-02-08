@@ -63,10 +63,13 @@ var Main = {
         prodObj = Main.data.providers[data.prov_id - 1].products[data.prod_id - 1],
         $modal = $($('#pichiModal').html());
     Main.selectedItem = prodObj;
+    Main.selectedItem.cantidad = 1;
+    Main.modal = $modal;
     $modal.find('.modal-title').html(prodObj.description);
-    $modal.find('.price').html('$'+prodObj.price);
+    $modal.find('.price').html('$' + prodObj.price);
+    $modal.find('.addToCart').on('click', Main.addToCart);
 
-    $modal.on('show.bs.modal', Main.onOpenModal(data))
+    $modal
     .on('hidden.bs.modal', function(){
       document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'))
       document.querySelector('body').removeChild(document.querySelector('#modal'))
@@ -74,19 +77,20 @@ var Main = {
     .modal('show');
   },
 
-  onOpenModal: function(data) {
+  addToCart: function() {
+    // if (undefined === localStorage['pichikout']) localStorage['pichikout'] = JSON.stringify([]);
+    localStorage['pichikout'] = JSON.stringify(Object.assign({}, JSON.parse(localStorage['pichikout']), Main.selectedItem));
+    Main.modal.modal('hide');
   },
 
   doCheckoutMobile: function () {
     document.querySelector('main').classList.toggle('checkout-mobile');
   },
 
-  add: function (e) {
-    e.parentNode.querySelector('#cantidad').value = parseInt(e.parentNode.querySelector('#cantidad').value) + 1;
-    document.querySelector('.price').innerHTML = '$' + e.parentNode.querySelector('#cantidad').value * Main.selectedItem.price;
-  },
-  less: function (e) {
-    e.parentNode.querySelector('#cantidad').value = parseInt(e.parentNode.querySelector('#cantidad').value) - 1;
+  updatePrice: function (e, add) {
+    if (add) Main.selectedItem.cantidad++;
+    else if (Main.selectedItem.cantidad > 0) Main.selectedItem.cantidad--;
+    e.parentNode.querySelector('#cantidad').value = Main.selectedItem.cantidad;
     document.querySelector('.price').innerHTML = '$' + e.parentNode.querySelector('#cantidad').value * Main.selectedItem.price;
   }
 
