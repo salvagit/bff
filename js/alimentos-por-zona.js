@@ -110,6 +110,8 @@ var Main = {
     var itemTpl = document.getElementById('cartItem').innerHTML,
         objCartItems = this.getLocalStorageObject();
 
+    document.getElementsByClassName('address')[0].innerHTML = Main.addr;
+
     document.getElementById('productsContainer').innerHTML = '';
     objCartItems.forEach(function (el) {
 

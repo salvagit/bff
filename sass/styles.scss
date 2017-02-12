@@ -151,7 +151,10 @@ main.content {
             padding: 0;
             float: left;
           }
-          p {float: right;}
+          p {
+            margin: 10px auto;
+            float: right;
+          }
         }
         .btn-compra {
           width: 100%;

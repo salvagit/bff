@@ -113,6 +113,7 @@
 
         <script id="cartItem" type="text/template">
           <div class="prod-container">
+            <span class="glyphicon glyphicon-remove right" onclick="Main.removeCartItem(this)" aria-hidden="true"></span>
             <span class="row">
               <select class="cart-prod-cant left" onchange="Main.updateCounts(this)"></select>
               <h4 class="cart-prod-title"></h4>
@@ -121,7 +122,6 @@
               <p class="prod-desc">precio:</p>
               <p class="cart-prod-price">$123</p>
             </span>
-            <span class="remove-cart-item" onclick="Main.removeCartItem(this)">eliminar</span>
           </div>
         </script>
 
