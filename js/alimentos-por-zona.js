@@ -16,9 +16,11 @@ var Main = {
   addr: '',
   data: {},
   selectedItem: {},
+
   init: function () {
     this.getProviders();
     Main.addr = decodeURIComponent(getParameterByName('q'));
+    Main.updateCart();
   },
 
   getProviders: function () {
@@ -59,8 +61,9 @@ var Main = {
   },
 
   clickFoodItem: function (e) {
-    var data = e.target.dataset,
-        prodObj = Main.data.providers[data.prov_id - 1].products[data.prod_id - 1],
+    e.preventDefault();
+    var data = this.dataset;
+    var prodObj = Main.data.providers[data.prov_id - 1].products[data.prod_id - 1],
         $modal = $($('#pichiModal').html());
     Main.selectedItem = prodObj;
     Main.selectedItem.cantidad = 1;
@@ -76,11 +79,20 @@ var Main = {
     .modal('show');
   },
 
+  getLocalStorageObject: function () {
+    return JSON.parse(localStorage['pichikout']);
+  },
+
+  saveLocalStorageObject: function (obj) {
+    localStorage['pichikout'] = JSON.stringify(obj);
+  },
+
   addToCart: function() {
-    if (undefined === localStorage['pichikout']) localStorage['pichikout'] = JSON.stringify([]);
-    var lso = JSON.parse(localStorage['pichikout']);
-    lso.push(Main.selectedItem);
-    localStorage['pichikout'] = JSON.stringify(lso);
+    if (undefined === localStorage['pichikout']) Main.saveLocalStorageObject([]);
+    var obj = Main.getLocalStorageObject();
+    obj.push(Main.selectedItem);
+    Main.saveLocalStorageObject(obj);
+    Main.updateCart();
     $('#modal').modal('hide');
   },
 
@@ -90,9 +102,62 @@ var Main = {
 
   updatePrice: function (e, add) {
     if (add) Main.selectedItem.cantidad++;
-    else if (Main.selectedItem.cantidad > 0) Main.selectedItem.cantidad--;
+    else if (Main.selectedItem.cantidad > 1) Main.selectedItem.cantidad--;
     e.parentNode.querySelector('#cantidad').value = Main.selectedItem.cantidad;
     document.querySelector('.price').innerHTML = '$' + e.parentNode.querySelector('#cantidad').value * Main.selectedItem.price;
+  },
+
+  updateCart: function () {
+    var itemTpl = document.getElementById('cartItem').innerHTML,
+        objCartItems = this.getLocalStorageObject();
+
+    document.getElementById('productsContainer').innerHTML = '';
+    objCartItems.forEach(function (el) {
+
+      var elCont = document.createElement('div');
+      elCont.innerHTML = itemTpl;
+      elCont.dataset.id = objCartItems.indexOf(el);
+
+      var limit = (el.cantidad > 10) ? el.cantidad : 10;
+      for (var i = 1; i <= limit; i++) {
+        var opt = document.createElement('option');
+        opt.value = opt.innerHTML = i;
+        elCont.querySelector('.cart-prod-cant').appendChild(opt);
+      }
+
+      elCont.querySelector('.cart-prod-cant').options[el.cantidad - 1].selected = true;
+      elCont.querySelector('.cart-prod-title').innerHTML = el.description;
+      elCont.querySelector('.cart-prod-price').innerHTML = '$' + el.price * el.cantidad;
+
+      elCont.appendChild(document.createElement('hr'));
+      document.getElementById('productsContainer').appendChild(elCont);
+    });
+
+    this.updatePrice();
+  },
+
+  updatePrice: function () {
+    var obj = this.getLocalStorageObject(),
+        total = 0;
+    obj.forEach(function(el){total += el.price * el.cantidad});
+    document.querySelectorAll('.total-cart').forEach(function(el){
+      el.innerHTML = '$' + total;
+    });
+  },
+
+  updateCounts: function (scope) {
+    var cartItemIndex = scope.parentNode.parentNode.parentNode.dataset.id,
+        objCartItems = this.getLocalStorageObject();
+    objCartItems[cartItemIndex].cantidad = scope.value;
+    this.saveLocalStorageObject(objCartItems);
+    this.updateCart();
+  },
+
+  removeCartItem: function(scope) {
+    var index = scope.parentNode.parentNode.dataset.id,
+        obj = this.getLocalStorageObject();
+    this.saveLocalStorageObject(obj.slice(0,index).concat(obj.slice(index + 1)));
+    this.updateCart();
   }
 
 };

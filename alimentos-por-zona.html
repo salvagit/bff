@@ -44,38 +44,27 @@
                   <p class="address">monroe 1234</p>
 
                   <hr>
-                    <div class="prod-container">
-                      <span class="row">
-                        <h4>Product Title:</h4>
-                        <p>$123</p>
-                      </span>
-                      <span class="row">
-                        <p class="prod-desc">description:</p>
-                        <p>$0</p>
-                      </span>
-                    </div>
-                    editar / eliminar
 
-                  <hr>
+                  <div id="productsContainer"></div>
 
                   <span class="row">
                     <h4>Subtotal:</h4>
-                    <p>$123</p>
+                    <p class="total-cart">$0</p>
                   </span>
 
                   <span class="row">
                     <h4>Impuesto:</h4>
-                    <p>$0</p>
+                    <p class="cost-tax">$0</p>
                   </span>
 
                   <span class="row">
                     <h4>Entrega:</h4>
-                    <p>$0</p>
+                    <p class="cost-entrega">$0</p>
                   </span>
 
                   <span class="row">
                     <h4>Total:</h4>
-                    <p>$123</p>
+                    <p class="total-cart">$0</p>
                   </span>
 
                   <button type="button" class="btn btn-danger btn-compra">
@@ -110,12 +99,10 @@
 
           <div class="menu-footer__cart-meta">
             <div class="menu-footer__open-cart">
-              <button class="pichi-button" onclick="Main.doCheckoutMobile()">
-                cart
-              </button>
+              <button class="cart-btn pichi-button" onclick="Main.doCheckoutMobile()"></button>
             </div>
             <div class="menu-footer__cart-total">
-              <span>$6.95</span>
+              <span class="total-cart">$0</span>
             </div>
             <button class="pichi-button red">
               CHECK OUT
@@ -123,6 +110,20 @@
           </div>
 
         </main>
+
+        <script id="cartItem" type="text/template">
+          <div class="prod-container">
+            <span class="row">
+              <select class="cart-prod-cant left" onchange="Main.updateCounts(this)"></select>
+              <h4 class="cart-prod-title"></h4>
+            </span>
+            <span class="row">
+              <p class="prod-desc">precio:</p>
+              <p class="cart-prod-price">$123</p>
+            </span>
+            <span class="remove-cart-item" onclick="Main.removeCartItem(this)">eliminar</span>
+          </div>
+        </script>
 
         <script id="foodItem" type="text/template">
           <a href="#" class="list-item-event">
@@ -186,7 +187,7 @@
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.js"></script>
-        <script src="js/getAlimentos.js"></script>
+        <script src="js/alimentos-por-zona.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
