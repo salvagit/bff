@@ -22,7 +22,7 @@ var Main = {
   },
 
   getProviders: function () {
-    fetch('http://salva.io/bff/food.json')
+    fetch('https://salva.io/bff/food.json')
     .then(function(response){return response.json();})
     .then(function(data){Main.filterFood(data);});
   },
