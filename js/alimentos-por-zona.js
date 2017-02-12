@@ -1,5 +1,3 @@
-"use strict";
-
 function getParameterByName(name, url) {
     if (!url) {
       url = window.location.href;
@@ -72,22 +70,22 @@ var Main = {
 
     $modal
     .on('hidden.bs.modal', function(){
-      document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'))
-      document.querySelector('body').removeChild(document.querySelector('#modal'))
+      document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'));
+      document.querySelector('body').removeChild(document.querySelector('#modal'));
     })
     .modal('show');
   },
 
   getLocalStorageObject: function () {
-    return JSON.parse(localStorage['pichikout']);
+    return JSON.parse(localStorage.pichikout);
   },
 
   saveLocalStorageObject: function (obj) {
-    localStorage['pichikout'] = JSON.stringify(obj);
+    localStorage.pichikout = JSON.stringify(obj);
   },
 
   addToCart: function() {
-    if (undefined === localStorage['pichikout']) Main.saveLocalStorageObject([]);
+    if (undefined === localStorage.pichikout) Main.saveLocalStorageObject([]);
     var obj = Main.getLocalStorageObject();
     obj.push(Main.selectedItem);
     Main.saveLocalStorageObject(obj);
@@ -140,7 +138,7 @@ var Main = {
   updateTotalPrice: function () {
     var obj = this.getLocalStorageObject(),
         total = 0;
-    obj.forEach(function(el){total += el.price * el.cantidad});
+    obj.forEach(function(el){total += el.price * el.cantidad;});
     document.querySelectorAll('.total-cart').forEach(function(el){
       el.innerHTML = '$' + total;
     });
@@ -164,5 +162,6 @@ var Main = {
 };
 
 (function () {
+  "use strict";
   Main.init();
 })();
