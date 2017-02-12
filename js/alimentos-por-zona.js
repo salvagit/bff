@@ -61,7 +61,6 @@ var Main = {
   },
 
   clickFoodItem: function (e) {
-    e.preventDefault();
     var data = this.dataset;
     var prodObj = Main.data.providers[data.prov_id - 1].products[data.prod_id - 1],
         $modal = $($('#pichiModal').html());
@@ -133,10 +132,10 @@ var Main = {
       document.getElementById('productsContainer').appendChild(elCont);
     });
 
-    this.updatePrice();
+    this.updateTotalPrice();
   },
 
-  updatePrice: function () {
+  updateTotalPrice: function () {
     var obj = this.getLocalStorageObject(),
         total = 0;
     obj.forEach(function(el){total += el.price * el.cantidad});
