@@ -24,6 +24,10 @@
       navigator.geolocation.getCurrentPosition(function(location) {
         long = location.coords.longitude;
         lat = location.coords.latitude;
+        var script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAwB28ont1wap3OIQeJnJF56LUFLr6zb8g&callback=initMap";
+        script.async = script.defer = true;
+        document.querySelector('body').appendChild(script);
       });
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -32,7 +36,5 @@
         });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwB28ont1wap3OIQeJnJF56LUFLr6zb8g&callback=initMap"
-        async defer></script>
   </body>
 </html>
