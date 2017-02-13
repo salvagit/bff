@@ -12,17 +12,23 @@ function getParameterByName(name, url) {
 
 var Main = {
   addr: '',
+  loc: {
+    lng: '',
+    lat: ''
+  },
   data: {},
   selectedItem: {},
 
   init: function () {
+    Main.loc.lng = parseFloat(getParameterByName('lng'));
+    Main.loc.lat = parseFloat(getParameterByName('lat'));
     this.getProviders();
     Main.addr = decodeURIComponent(getParameterByName('q'));
     Main.updateCart();
   },
 
   getProviders: function () {
-    fetch('https://salva.io/bff/food.json')
+    fetch('https://pichifood.herokuapp.com/' + Main.loc.lng + '/' + Main.loc.lat)
     .then(function(response){return response.json();})
     .then(function(data){Main.filterFood(data);});
   },
