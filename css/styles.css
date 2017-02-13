@@ -93,6 +93,9 @@ p {
 hr {
   border-top: 1px solid #9db2c3 !important; }
 
+a:hover {
+  text-decoration: none !important; }
+
 .w100 {
   width: 100%; }
 
