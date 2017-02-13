@@ -2,7 +2,7 @@
 	"providers": [{
 		"id": "1",
 		"name": "tito",
-		"address": "monroe 1760",
+		"address": "Monroe 1760, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina",
 		"delivery-time": "5hs",
 		"products": [{
 			"_id": "1",
@@ -20,7 +20,7 @@
 	}, {
 		"id": "2",
 		"name": "polytech",
-		"address": "cabildo 1760",
+		"address": "Av. Cabildo 1760, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina",
 		"delivery-time": "5hs",
 		"products": [{
 			"_id": "1",
@@ -37,7 +37,7 @@
 		}]
 	}, {
 		"id": "3",
-		"address": "libertador 1760",
+		"address": "Avenida del Libertador 1760, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina",
 		"delivery-time": "5hs",
 		"products": [{
 			"_id": "1",
