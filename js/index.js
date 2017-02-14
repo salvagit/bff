@@ -41,7 +41,6 @@ var Main = {
     var bgImg = "url('images/image" + Math.ceil(Math.random() * 5) +".jpg' )";
     document.getElementsByClassName('content')[0].style.backgroundImage = bgImg;
     this.bindActions();
-    this.updateCart();
   },
   bindActions: function () {
     var form = document.getElementById('searchForm');
