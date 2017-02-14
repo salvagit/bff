@@ -60,7 +60,7 @@ var Main = {
         el = document.createElement('div');
 
     el.innerHTML = tpl;
-    el.getElementsByTagName('a')[0].dataset.prov_id = provider.id;
+    el.getElementsByTagName('a')[0].dataset.prov_id = provider._id;
     el.getElementsByTagName('a')[0].dataset.prod_id = prod._id;
     el.getElementsByTagName('a')[0].addEventListener('click', this.clickFoodItem);
 
@@ -72,7 +72,8 @@ var Main = {
 
   clickFoodItem: function (e) {
     var data = this.dataset;
-    var prodObj = Main.data.providers[data.prov_id - 1].products[data.prod_id - 1],
+    var prov = Main.data.providers.filter(function(el){return el._id === data.prov_id});
+    var prodObj = prov[0].products[data.prod_id - 1],
         $modal = $($('#pichiModal').html());
     Main.selectedItem = prodObj;
     Main.selectedItem.cantidad = 1;
