@@ -28,7 +28,13 @@ var Main = {
   },
 
   getProviders: function () {
-    fetch('https://pichifood.herokuapp.com/' + Main.loc.lng + '/' + Main.loc.lat)
+    var url = 'https://pichifood.herokuapp.com/' + Main.loc.lng + '/' + Main.loc.lat,
+        misCabeceras = new Headers(),
+        init = { method: 'GET',
+               headers: misCabeceras,
+               mode: 'cors',
+               cache: 'default' };
+    fetch(url, init)
     .then(function(response){return response.json();})
     .then(function(data){Main.filterFood(data);});
   },
