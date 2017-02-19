@@ -28,7 +28,7 @@ var Main = {
   },
 
   getProviders: function () {
-    var url = 'https://pichifood.herokuapp.com/' + Main.loc.lng + '/' + Main.loc.lat,
+    var url = 'https://pichifood.herokuapp.com/getFoodByLocation' + Main.loc.lng + '/' + Main.loc.lat,
         misCabeceras = new Headers(),
         init = { method: 'GET',
                headers: misCabeceras,
