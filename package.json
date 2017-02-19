@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/salvagit/bff/issues"
   },
-  "homepage": "https://github.com/salvagit/bff#readme"
+  "homepage": "https://github.com/salvagit/bff#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
 }

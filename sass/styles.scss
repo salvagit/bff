@@ -138,6 +138,12 @@ main.content {
   height: 100%;
   margin: 0;
   padding: 0;
+  .title-container {
+    h1 {
+      font-family: MuseoSans500, Verdana, Geneva, sans-serif;
+      color: #343e44;
+    }
+  }
   .content-show {
     section {
       min-height: calc(100vh - 285px);

@@ -165,6 +165,9 @@ main.content {
   height: 100%;
   margin: 0;
   padding: 0; }
+  main.content .title-container h1 {
+    font-family: MuseoSans500, Verdana, Geneva, sans-serif;
+    color: #343e44; }
   main.content .content-show section {
     min-height: calc(100vh - 285px); }
   main.content .content-show .checkout-container .checkout {

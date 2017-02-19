@@ -29,6 +29,7 @@
         <main class="content">
 
           <header class="header">
+            <a id="getModalVete" href="#">SOY VETERINARIA</a>
           </header>
 
           <article class="content-show">
@@ -78,6 +79,52 @@
             <button class="description">$price</button>
           </a>
         </script>
+
+        <script id="addVeteModal" type="text/template">
+          <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content center" style="max-width:400px;">
+
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Agregar Veterinaria</h4>
+                </div>
+
+                <div class="modal-body">
+
+                  <form id="saveVeteForm">
+                    <div class="form-group">
+                      <label for="name">Nombre</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Telefono</label>
+                      <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefono">
+                    </div>
+                    <div class="form-group">
+                      <label for="address">Direccion</label>
+                      <input type="text" class="form-control" id="addr" name="address" placeholder="Direccion">
+                    </div>
+                    <div class="form-group">
+                      <label for="comments">Comentarios</label>
+                      <textarea id="comments" name="comments" class="form-control" rows="3"></textarea>
+                    </div>
+                  </form>
+
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger w100 saveVete">enviar</button>
+                </div>
+
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+        </script>
         <!-- Latest compiled and minified CSS -->
 
         <!-- Latest compiled and minified JavaScript -->
@@ -86,9 +133,11 @@
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="js/index.js"></script>
+        <script src="js/globals.js"></script>
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwB28ont1wap3OIQeJnJF56LUFLr6zb8g&libraries=places&callback=initAutocomplete"
         async defer></script>
+
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
