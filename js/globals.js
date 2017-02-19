@@ -41,8 +41,8 @@ console.log(formData);
         formData.append(k, mock[k]);
     }
 
-    // fetch("https://pichifood.herokuapp.com/createByContact/", {
-    fetch("http://localhost:8086/createByContact/", {
+    fetch("https://pichifood.herokuapp.com/createByContact/", {
+    // fetch("http://localhost:8086/createByContact/", {
         method: "POST",
         headers: {
           'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
