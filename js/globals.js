@@ -35,20 +35,17 @@ Main.globals = {
 
     mock.comments = document.querySelector('#comments').value;
 
-    var fetchUrl = ('localhost' === window.location.hostname) ?
+    var apiUrl = ('localhost' === window.location.hostname) ?
                         'http://localhost:8086' :
                         'https://pichifood.herokuapp.com';
 
-    fetch(fetchUrl + "/createByContact/", {
-        method: "POST",
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(mock)
-    })
-    .then(function(res){ return res.json(); })
-    .then(function(data){
-      console.log(data);
+    $.ajax({
+      url: apiUrl + '/createByContact/',
+      method: 'post',
+      data: mock,
+      success: function(status, data) {
+        console.log(status, data);
+      }
     });
     $('#modal').modal('hide');
 
