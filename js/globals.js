@@ -35,8 +35,11 @@ Main.globals = {
 
     mock.comments = document.querySelector('#comments').value;
 
-    // fetch("http://localhost:8086/createByContact/", {
-    fetch("https://pichifood.herokuapp.com/createByContact/", {
+    var fetchUrl = ('localhost' === window.location.hostname) ?
+                        'http://localhost:8086' :
+                        'https://pichifood.herokuapp.com';
+
+    fetch(fetchUrl + "/createByContact/", {
         method: "POST",
         headers: {
           'content-type': 'application/json'
