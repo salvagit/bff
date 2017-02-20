@@ -49,8 +49,8 @@ Main.globals = {
     .then(function(res){ return res.json(); })
     .then(function(data){
       console.log(data);
-      $('#modal').modal('hide');
     });
+    $('#modal').modal('hide');
 
   }
 };
