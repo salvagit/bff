@@ -1,39 +1,26 @@
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
-var placeSearch, autocomplete;
-var componentForm = {
-  street_number: 'short_name',
-  route: 'long_name',
-  locality: 'long_name',
-  administrative_area_level_1: 'short_name',
-  country: 'long_name',
-  postal_code: 'short_name'
-};
+var autocomplete;
 
 function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
   autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+      /** @type {!HTMLInputElement} */(document.getElementById('addrHome')),
       {types: ['geocode'],
       componentRestrictions: {country: 'ar'}});
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
-  autocomplete.addListener('place_changed', fillInAddress);
-}
-
-// [START region_fillform]
-function fillInAddress() {
-  // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
-
-  Main.location = {
-    latitude: place.geometry.location.lat(),
-    longitude: place.geometry.location.lng()
-  };
-
+  autocomplete.addListener('place_changed', function (a,b) {
+    // Get the place details from the autocomplete object.
+    var place = this.getPlace();
+    Main.location = {
+      latitude: place.geometry.location.lat(),
+      longitude: place.geometry.location.lng()
+    };
+  });
 }
 
 var Main = {

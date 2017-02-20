@@ -1,3 +1,4 @@
+
 Main.globals = {
   init: function () {
     'use strict';
@@ -13,9 +14,23 @@ Main.globals = {
       document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'));
       document.querySelector('body').removeChild(document.querySelector('#modal'));
     })
-    .on('shown.bs.modal', function(){
+    .on('shown.bs.modal', function(e) {
       document.getElementById('saveVeteForm').addEventListener('submit', Main.globals.saveVete);
       document.getElementsByClassName('saveVete')[0].addEventListener('click', Main.globals.doSave);
+
+      var autocomplete2 = new google.maps.places.Autocomplete(document.querySelector('#addrModal'), {
+        types: ['geocode'],
+        componentRestrictions: {country: 'ar'}
+      });
+      // When the user selects an address from the dropdown, populate the address
+      // fields in the form.
+      autocomplete2.addListener('place_changed', function (a,b) {
+        // Get the place details from the autocomplete object.
+        var place = this.getPlace();
+        document.querySelector('#latitude').value = place.geometry.location.lat();
+        document.querySelector('#longitude').value = place.geometry.location.lng();
+      });
+
     })
     .modal('show');
   },

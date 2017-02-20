@@ -41,7 +41,7 @@
               <form id="searchForm" class="form-horizontal enter-addr">
                 <div class="form-group form-group-lg">
                   <div class="input-group">
-                    <input class="form-control" type="text" id="autocomplete"
+                    <input class="form-control autocomplete" type="text" id="addrHome"
                            placeholder="Ingrese Su Direccion">
                     <span class="input-group-addon row search-food">Buscar</span>
                   </div>
@@ -82,6 +82,21 @@
 
         <script id="addVeteModal" type="text/template">
           <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <style>
+              .pac-container {
+                    background-color: #FFF;
+                    z-index: 20;
+                    position: fixed;
+                    display: inline-block;
+                    float: left;
+                }
+                .modal{
+                    z-index: 20;
+                }
+                .modal-backdrop{
+                    z-index: 10;
+                }​
+            </style>
             <div class="modal-dialog" role="document">
               <div class="modal-content center" style="max-width:400px;">
 
@@ -93,21 +108,25 @@
                 <div class="modal-body">
 
                   <form id="saveVeteForm">
+
+                    <input type="hidden" id="longitude" name="longitude" />
+                    <input type="hidden" id="latitude" name="latitude" />
+
                     <div class="form-group">
                       <label for="name">Nombre</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Nombre">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" />
                     </div>
                     <div class="form-group">
                       <label for="email">Email</label>
-                      <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
                     </div>
                     <div class="form-group">
                       <label for="phone">Telefono</label>
-                      <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefono">
+                      <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefono" />
                     </div>
                     <div class="form-group">
                       <label for="address">Direccion</label>
-                      <input type="text" class="form-control" id="addr" name="address" placeholder="Direccion">
+                      <input type="text" class="form-control autocomplete" id="addrModal" name="address" placeholder="Direccion" />
                     </div>
                     <div class="form-group">
                       <label for="comments">Comentarios</label>
@@ -135,7 +154,7 @@
         <script src="js/index.js"></script>
         <script src="js/globals.js"></script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwB28ont1wap3OIQeJnJF56LUFLr6zb8g&libraries=places&callback=initAutocomplete"
+        <script id="gmScript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwB28ont1wap3OIQeJnJF56LUFLr6zb8g&libraries=places&callback=initAutocomplete"
         async defer></script>
 
 
