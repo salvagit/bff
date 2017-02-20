@@ -33,25 +33,18 @@ Main.globals = {
       mock[el.name] = el.value;
     });
 
-    mock.comments = document.querySelector('#comments').innerHTML;
+    mock.comments = document.querySelector('#comments').value;
 
-    var formData = new FormData();
-console.log(formData);
-    for (var k in mock) {
-        formData.append(k, mock[k]);
-    }
-
-    fetch("https://pichifood.herokuapp.com/createByContact/", {
     // fetch("http://localhost:8086/createByContact/", {
+    fetch("https://pichifood.herokuapp.com/createByContact/", {
         method: "POST",
         headers: {
-          'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'content-type': 'application/json'
         },
-        body: formData
+        body: JSON.stringify(mock)
     })
     .then(function(res){ return res.json(); })
-    .then(function(data){ console.log( JSON.stringify( data ) ); });
+    .then(function(data){ console.log( data ); });
 
   }
 };
