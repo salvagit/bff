@@ -22,9 +22,35 @@ var Main = {
   init: function () {
     Main.loc.lng = parseFloat(getParameterByName('lng'));
     Main.loc.lat = parseFloat(getParameterByName('lat'));
-    this.getProviders();
     Main.addr = decodeURIComponent(getParameterByName('q'));
-    Main.updateCart();
+    this.getProviders();
+    this.updateCart();
+    this.bindActions();
+  },
+
+  bindActions: function () {
+    document.querySelectorAll('.btn-compra').forEach(function(el){
+      el.addEventListener('click', function (e){
+        e.preventDefault();
+        var apiUrl = ('localhost' === window.location.hostname) ?
+                            'http://localhost:8086' :
+                            'https://pichifood.herokuapp.com';
+
+        $.ajax({
+          url: apiUrl + '/checkout',
+          method: 'post',
+          data: {items: Main.getLocalStorageObject()},
+          success: function (data) {
+            console.log(data);
+            window.location = data.redirectUrl;
+          },
+          error: function (err) {
+            console.error(err);
+          }
+        });
+        // window.location = apiUrl + '/checkout';
+      });
+    });
   },
 
   getProviders: function () {
@@ -72,11 +98,14 @@ var Main = {
 
   clickFoodItem: function (e) {
     var data = this.dataset;
-    var prov = Main.data.providers.filter(function(el){return el._id === data.prov_id});
+    var prov = Main.data.providers.filter(function(el){return el._id === data.prov_id;});
     var prodObj = prov[0].products[data.prod_id - 1],
         $modal = $($('#pichiModal').html());
     Main.selectedItem = prodObj;
-    Main.selectedItem.cantidad = 1;
+    Main.selectedItem.title = prodObj.description;
+    Main.selectedItem.unit_price = prodObj.price;
+    Main.selectedItem.quantity = 1;
+    Main.selectedItem.currency_id = "ARS";
     $modal.find('.modal-title').html(prodObj.description);
     $modal.find('.price').html('$' + prodObj.price);
     $modal.find('.addToCart').on('click', Main.addToCart);
@@ -111,9 +140,9 @@ var Main = {
   },
 
   updatePrice: function (e, add) {
-    if (add) Main.selectedItem.cantidad++;
-    else if (Main.selectedItem.cantidad > 1) Main.selectedItem.cantidad--;
-    e.parentNode.querySelector('#cantidad').value = Main.selectedItem.cantidad;
+    if (add) Main.selectedItem.quantity++;
+    else if (Main.selectedItem.quantity > 1) Main.selectedItem.quantity--;
+    e.parentNode.querySelector('#cantidad').value = Main.selectedItem.quantity;
     document.querySelector('.price').innerHTML = '$' + e.parentNode.querySelector('#cantidad').value * Main.selectedItem.price;
   },
 
@@ -130,16 +159,16 @@ var Main = {
       elCont.innerHTML = itemTpl;
       elCont.dataset.id = objCartItems.indexOf(el);
 
-      var limit = (el.cantidad > 10) ? el.cantidad : 10;
+      var limit = (el.quantity > 10) ? el.quantity : 10;
       for (var i = 1; i <= limit; i++) {
         var opt = document.createElement('option');
         opt.value = opt.innerHTML = i;
         elCont.querySelector('.cart-prod-cant').appendChild(opt);
       }
 
-      elCont.querySelector('.cart-prod-cant').options[el.cantidad - 1].selected = true;
+      elCont.querySelector('.cart-prod-cant').options[el.quantity - 1].selected = true;
       elCont.querySelector('.cart-prod-title').innerHTML = el.description;
-      elCont.querySelector('.cart-prod-price').innerHTML = '$' + el.price * el.cantidad;
+      elCont.querySelector('.cart-prod-price').innerHTML = '$' + el.price * el.quantity;
 
       elCont.appendChild(document.createElement('hr'));
       document.getElementById('productsContainer').appendChild(elCont);
@@ -151,7 +180,7 @@ var Main = {
   updateTotalPrice: function () {
     var obj = this.getLocalStorageObject(),
         total = 0;
-    obj.forEach(function(el){total += el.price * el.cantidad;});
+    obj.forEach(function(el){total += el.price * el.quantity;});
     document.querySelectorAll('.total-cart').forEach(function(el){
       el.innerHTML = '$' + total;
     });
@@ -160,7 +189,7 @@ var Main = {
   updateCounts: function (scope) {
     var cartItemIndex = scope.parentNode.parentNode.parentNode.dataset.id,
         objCartItems = this.getLocalStorageObject();
-    objCartItems[cartItemIndex].cantidad = scope.value;
+    objCartItems[cartItemIndex].quantity = scope.value;
     this.saveLocalStorageObject(objCartItems);
     this.updateCart();
   },
