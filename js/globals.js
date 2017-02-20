@@ -47,7 +47,10 @@ Main.globals = {
         body: JSON.stringify(mock)
     })
     .then(function(res){ return res.json(); })
-    .then(function(data){ console.log( data ); });
+    .then(function(data){
+      console.log(data);
+      $('#modal').modal('hide');
+    });
 
   }
 };
