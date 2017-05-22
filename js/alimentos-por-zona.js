@@ -97,7 +97,7 @@ var Main = {
   clickFoodItem: function (e) {
     var data = this.dataset;
     var prov = Main.data.providers.filter(function(el){return el._id === data.prov_id;});
-    var prodObj = prov[0].products[data.prod_id],
+    var prodObj = prov[0].products[data.prod_id - 1],
         $modal = $($('#pichiModal').html());
     Main.selectedItem = prodObj;
 
@@ -105,7 +105,7 @@ var Main = {
     Main.selectedItem.unit_price = prodObj.price;
     Main.selectedItem.quantity = 1;
     Main.selectedItem.currency_id = "ARS";
-    $modal.find('.modal-title').html(prodObj.description);
+    $modal.find('.modal-title').html(prodObj.brand +' '+ prodObj.line);
     $modal.find('.price').html('$' + prodObj.price);
     $modal.find('.addToCart').on('click', Main.addToCart);
 
@@ -113,6 +113,9 @@ var Main = {
     .on('hidden.bs.modal', function(){
       document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'));
       document.querySelector('body').removeChild(document.querySelector('#modal'));
+    })
+    .on('loaded.bs.modal', function() {
+      this.updatePrice(document.getElementById('cantidad'));
     })
     .modal('show');
   },
@@ -143,6 +146,7 @@ var Main = {
     if (add) Main.selectedItem.quantity++;
     else if (Main.selectedItem.quantity > 1) Main.selectedItem.quantity--;
     e.parentNode.querySelector('#cantidad').value = Main.selectedItem.quantity;
+console.log(Main.selectedItem,e.parentNode.querySelector('#cantidad').value);
     document.querySelector('.price').innerHTML = '$' + e.parentNode.querySelector('#cantidad').value * Main.selectedItem.price;
   },
 
@@ -167,7 +171,7 @@ var Main = {
       }
 
       elCont.querySelector('.cart-prod-cant').options[el.quantity - 1].selected = true;
-      elCont.querySelector('.cart-prod-title').innerHTML = el.description;
+      elCont.querySelector('.cart-prod-title').innerHTML = el.brand +' '+ el.line;
       elCont.querySelector('.cart-prod-price').innerHTML = '$' + el.price * el.quantity;
 
       elCont.appendChild(document.createElement('hr'));
