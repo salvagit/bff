@@ -41,7 +41,6 @@ var Main = {
           method: 'post',
           data: {items: Main.getLocalStorageObject()},
           success: function (data) {
-            console.log(data);
             window.location = data.redirectUrl;
           },
           error: function (err) {
@@ -68,13 +67,13 @@ var Main = {
   filterFood: function (data) {
     this.data = data;
     var filterData = data.providers.filter(function(el){
-      return el.address === Main.addr;
+      return el.products;
     });
     this.renderFood(filterData);
   },
 
   renderFood: function (data) {
-    data.forEach(function(el){
+    data.forEach(function(el) {
       el.products.forEach(function(prod){
         Main.renderFoodItem(prod, el);
       });
@@ -84,13 +83,12 @@ var Main = {
   renderFoodItem: function (prod, provider) {
     var tpl = document.querySelector('#foodItem').innerHTML,
         el = document.createElement('div');
-
     el.innerHTML = tpl;
     el.getElementsByTagName('a')[0].dataset.prov_id = provider._id;
     el.getElementsByTagName('a')[0].dataset.prod_id = prod._id;
     el.getElementsByTagName('a')[0].addEventListener('click', this.clickFoodItem);
 
-    el.querySelector('.title').innerHTML = prod.description;
+    el.querySelector('.title').innerHTML = (prod.brand + ' ' + prod.line) || prod.description;
     el.querySelector('.description').innerHTML = '$' + prod.price;
 
     document.getElementsByClassName('content-list')[0].appendChild(el.getElementsByTagName('a')[0]);
@@ -99,9 +97,10 @@ var Main = {
   clickFoodItem: function (e) {
     var data = this.dataset;
     var prov = Main.data.providers.filter(function(el){return el._id === data.prov_id;});
-    var prodObj = prov[0].products[data.prod_id - 1],
+    var prodObj = prov[0].products[data.prod_id],
         $modal = $($('#pichiModal').html());
     Main.selectedItem = prodObj;
+
     Main.selectedItem.title = prodObj.description;
     Main.selectedItem.unit_price = prodObj.price;
     Main.selectedItem.quantity = 1;
@@ -119,7 +118,8 @@ var Main = {
   },
 
   getLocalStorageObject: function () {
-    return JSON.parse(localStorage.pichikout);
+    var storage = localStorage.pichikout || '[]';
+    return JSON.parse(storage);
   },
 
   saveLocalStorageObject: function (obj) {
@@ -151,8 +151,8 @@ var Main = {
         objCartItems = this.getLocalStorageObject();
 
     document.getElementsByClassName('address')[0].innerHTML = Main.addr;
-
     document.getElementById('productsContainer').innerHTML = '';
+
     objCartItems.forEach(function (el) {
 
       var elCont = document.createElement('div');
