@@ -132,7 +132,10 @@ a:hover {
 .content-list {
   width: 100%;
   padding: 10px;
-  float: left; }
+  float: left;
+  text-align: center; }
+  .content-list .list-item-event {
+    text-align: left; }
   .content-list .list-item-event .title,
   .content-list .list-item-event .description {
     color: #6b9ac0; }

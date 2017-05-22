@@ -18,6 +18,8 @@ var Main = {
   },
   data: {},
   selectedItem: {},
+  itemsPerPage: 10,
+  pageActive: 0,
 
   init: function () {
     Main.loc.lng = parseFloat(getParameterByName('lng'));
@@ -65,33 +67,67 @@ var Main = {
   },
 
   filterFood: function (data) {
-    this.data = data;
-    var filterData = data.providers.filter(function(el){
-      return el.products;
-    });
-    this.renderFood(filterData);
-  },
-
-  renderFood: function (data) {
-    data.forEach(function(el) {
-      el.products.forEach(function(prod){
-        Main.renderFoodItem(prod, el);
+    // @todo resolve from server side.
+    var arrProds = [];
+    data.providers.forEach(function (el) {
+      if(!el.products) return false;
+      el.products.forEach(function(prod) {
+        prod.providerId = el._id;
+        if(!prod.price || !prod.brand || !prod.line) return false;
+        arrProds.push(prod);
       });
     });
+    this.products = arrProds;
+    this.renderFood();
   },
 
-  renderFoodItem: function (prod, provider) {
+  renderFood: function (products) {
+    window.scrollTo(0,0);
+    document.getElementsByClassName('content-list')[0].innerHTML = '';
+    products = products || this.products.slice(0,this.itemsPerPage);
+    products.forEach(function(prod){
+      Main.renderFoodItem(prod);
+    });
+    this.renderPaginator();
+  },
+
+  renderFoodItem: function (prod) {
     var tpl = document.querySelector('#foodItem').innerHTML,
         el = document.createElement('div');
     el.innerHTML = tpl;
-    el.getElementsByTagName('a')[0].dataset.prov_id = provider._id;
+    el.getElementsByTagName('a')[0].dataset.prov_id = prod.providerId;
     el.getElementsByTagName('a')[0].dataset.prod_id = prod._id;
     el.getElementsByTagName('a')[0].addEventListener('click', this.clickFoodItem);
 
-    el.querySelector('.title').innerHTML = (prod.brand + ' ' + prod.line) || prod.description;
+    el.querySelector('.title').innerHTML = prod.brand + ' ' + prod.line;
     el.querySelector('.description').innerHTML = '$' + prod.price;
 
     document.getElementsByClassName('content-list')[0].appendChild(el.getElementsByTagName('a')[0]);
+  },
+
+  renderPaginator: function () {
+    var ul = document.createElement('ul');
+    ul.className = 'pagination center';
+    pages = Math.floor(Main.products.length / this.itemsPerPage);
+    for (var i = 0; i < pages; i++) {
+      var li = document.createElement('li');
+      if (i === Main.pageActive - 1) li.className = "active";
+      var a = document.createElement('a');
+      a.href = "#";
+      a.addEventListener('click', this.doPaginate);
+      a.innerHTML = i + 1;
+      li.appendChild(a);
+      ul.appendChild(li);
+    }
+    document.getElementsByClassName('content-list')[0].appendChild(ul);
+  },
+
+  doPaginate: function(e) {
+    e.preventDefault();
+    Main.pageActive = e.target.innerHTML;
+    var to = Main.pageActive * Main.itemsPerPage;
+    var from = to - Main.itemsPerPage;
+    Main.renderFood(Main.products.slice(from, to));
   },
 
   clickFoodItem: function (e) {
@@ -113,9 +149,6 @@ var Main = {
     .on('hidden.bs.modal', function(){
       document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'));
       document.querySelector('body').removeChild(document.querySelector('#modal'));
-    })
-    .on('loaded.bs.modal', function() {
-      this.updatePrice(document.getElementById('cantidad'));
     })
     .modal('show');
   },
@@ -146,7 +179,6 @@ var Main = {
     if (add) Main.selectedItem.quantity++;
     else if (Main.selectedItem.quantity > 1) Main.selectedItem.quantity--;
     e.parentNode.querySelector('#cantidad').value = Main.selectedItem.quantity;
-console.log(Main.selectedItem,e.parentNode.querySelector('#cantidad').value);
     document.querySelector('.price').innerHTML = '$' + e.parentNode.querySelector('#cantidad').value * Main.selectedItem.price;
   },
 

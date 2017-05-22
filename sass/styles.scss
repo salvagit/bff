@@ -101,6 +101,10 @@ a:hover { text-decoration: none!important; }
   width: 100%;
   padding: 10px;
   float: left;
+  text-align: center;
+  .list-item-event {
+    text-align: left;
+  }
   .list-item-event .title,
   .list-item-event .description {
     color: $soft-blue;
