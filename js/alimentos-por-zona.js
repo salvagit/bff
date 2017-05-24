@@ -132,17 +132,20 @@ var Main = {
 
   clickFoodItem: function (e) {
     var data = this.dataset;
-    var prov = Main.data.providers.filter(function(el){return el._id === data.prov_id;});
-    var prodObj = prov[0].products[data.prod_id - 1],
-        $modal = $($('#pichiModal').html());
-    Main.selectedItem = prodObj;
+    var prodObj = Main.products.filter(function(el) {
+      //console.log ( (el.providerId === data.prov_id) && (el._id === parseInt(data.prod_id)) );
+      return (el.providerId === data.prov_id) && (el._id === parseInt(data.prod_id));
+    });
+    // var prodObj = prov[0].products[data.prod_id - 1],
+    var $modal = $($('#pichiModal').html());
+    Main.selectedItem = prodObj[0];
 
-    Main.selectedItem.title = prodObj.description;
-    Main.selectedItem.unit_price = prodObj.price;
+    Main.selectedItem.title = prodObj[0].description;
+    Main.selectedItem.unit_price = prodObj[0].price;
     Main.selectedItem.quantity = 1;
     Main.selectedItem.currency_id = "ARS";
-    $modal.find('.modal-title').html(prodObj.brand +' '+ prodObj.line);
-    $modal.find('.price').html('$' + prodObj.price);
+    $modal.find('.modal-title').html(prodObj[0].brand +' '+ prodObj[0].line);
+    $modal.find('.price').html('$' + prodObj[0].price);
     $modal.find('.addToCart').on('click', Main.addToCart);
 
     $modal
@@ -201,7 +204,6 @@ var Main = {
         opt.value = opt.innerHTML = i;
         elCont.querySelector('.cart-prod-cant').appendChild(opt);
       }
-
       elCont.querySelector('.cart-prod-cant').options[el.quantity - 1].selected = true;
       elCont.querySelector('.cart-prod-title').innerHTML = el.brand +' '+ el.line;
       elCont.querySelector('.cart-prod-price').innerHTML = '$' + el.price * el.quantity;
