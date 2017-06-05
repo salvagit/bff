@@ -20,32 +20,35 @@ function initAutocomplete() {
       latitude: place.geometry.location.lat(),
       longitude: place.geometry.location.lng()
     };
+    Main.submitForm();
+    console.log(Main);
   });
 }
 
 var Main = {
+  form: {},
   init: function () {
-    /*var bgImg = "url('images/image" + Math.ceil(Math.random() * 5) +".jpg' )";
-    document.getElementsByClassName('content')[0].style.backgroundImage = bgImg;*/
+    this.form = document.getElementById('searchForm');
     this.bindActions();
   },
   bindActions: function () {
-    var form = document.getElementById('searchForm');
 
-    form.addEventListener('submit', function(e) {
+    this.form.addEventListener('submit', function(e) {
       e.preventDefault();
       window.location = './alimentos-por-zona.html?q=' +
                          encodeURI(this.getElementsByTagName('input')[0].value) +
                          '&lat=' + Main.location.latitude + '&lng=' + Main.location.longitude;
     });
-
+/*
     document.querySelector('.search-food').addEventListener('click', function(e){
       e.preventDefault();
-      console.log(this, form);
-      var submitForm = new Event('submit');
-      form.dispatchEvent(submitForm);
-      // document.getElementById('searchForm').submit();
+      Main.submitForm();
     });
+*/
+  },
+  submitForm: function () {
+    var submitForm = new Event('submit');
+    this.form.dispatchEvent(submitForm);
   }
 };
 

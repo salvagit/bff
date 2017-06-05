@@ -5,7 +5,10 @@
 @import 'header';
 @import 'steps';
 @import 'contactForm';
+@import 'doggi';
 @import 'footer';
+
+@import 'queries';
 
 @import url('https://fonts.googleapis.com/css?family=Mogra&subset=latin-ext');
 
@@ -127,9 +130,18 @@ main.content {
         .form-group {
           margin: 0;
 
-          input#addrHome:focus {
-            outline: none!important;
-            border: 0;
+          #addrHome {
+            &:focus {
+              outline: none!important;
+              border:2px solid rgba(255,255,255,.5);
+              box-shadow: none;
+            }
+            border:2px solid rgba(255,255,255,.5);
+            font-size:1.75em;
+            padding:.25em .5em .3125em;
+            color:rgba(255,255,255,.5);
+            border-radius:.25em;
+            background:transparent;
           }
 
           .input-group {
