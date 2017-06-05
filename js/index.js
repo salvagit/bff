@@ -25,8 +25,8 @@ function initAutocomplete() {
 
 var Main = {
   init: function () {
-    var bgImg = "url('images/image" + Math.ceil(Math.random() * 5) +".jpg' )";
-    document.getElementsByClassName('content')[0].style.backgroundImage = bgImg;
+    /*var bgImg = "url('images/image" + Math.ceil(Math.random() * 5) +".jpg' )";
+    document.getElementsByClassName('content')[0].style.backgroundImage = bgImg;*/
     this.bindActions();
   },
   bindActions: function () {

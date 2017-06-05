@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "npm run watch && xdg-open index.html",
+    "start": "node index.js && npm run watch",
     "watch": "sass --watch sass/styles.scss:css/styles.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

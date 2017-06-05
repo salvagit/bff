@@ -1,68 +1,10 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline; }
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block; }
-
-body {
-  line-height: 1; }
-
-ol, ul {
-  list-style: none; }
-
-blockquote, q {
-  quotes: none; }
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
+@import url("https://fonts.googleapis.com/css?family=Mogra&subset=latin-ext");
 * {
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out; }
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out; }
 
-@font-face {
-  font-family: 'MuseoSans100';
-  src: url("../font/museosans-100-webfont.eot");
-  src: url("../font/museosans-100-webfont.eot?iefix") format("eot"), url("../font/museosans-100-webfont.woff2") format("woff2"), url("../font/museosans-100-webfont.woff") format("woff"), url("../font/museosans-100-webfont.ttf") format("truetype"), url("../font/museosans-100-webfont.svg#webfont") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-@font-face {
-  font-family: 'MuseoSans500';
-  src: url("../font/museosans-500-webfont.eot");
-  src: url("../font/museosans-500-webfont.eot?iefix") format("eot"), url("../font/museosans-500-webfont.woff2") format("woff2"), url("../font/museosans-500-webfont.woff") format("woff"), url("../font/museosans-500-webfont.ttf") format("truetype"), url("../font/museosans-500-webfont.svg#webfont") format("svg");
-  font-weight: normal;
-  font-style: normal; }
 * {
   box-sizing: border-box; }
 
@@ -111,6 +53,53 @@ a:hover {
 .round {
   border-radius: 50% !important; }
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 .header {
   background-color: #eaebed;
   padding: 13px 0 9px 0;
@@ -122,12 +111,103 @@ a:hover {
       display: inline-block;
       width: 200px; }
 
+section.steps {
+  clear: both;
+  padding: 100px 0; }
+  section.steps .row {
+    margin: 0; }
+  section.steps .step-item {
+    text-align: center; }
+    section.steps .step-item svg {
+      width: 100%;
+      max-width: 200px;
+      margin: 0;
+      border: 10px solid black;
+      border-radius: 50%;
+      padding: 10%; }
+    section.steps .step-item h4 {
+      font-family: 'Mogra', cursive; }
+
+section.contact-form {
+  @import url(https://fonts.googleapis.com/css?family=Merriweather);
+  /* Clearfix */ }
+  section.contact-form html, section.contact-form body {
+    background: #f1f1f1;
+    font-family: 'Merriweather', sans-serif;
+    padding: 1em; }
+  section.contact-form h1 {
+    text-align: center;
+    color: #a8a8a8; }
+  section.contact-form form {
+    max-width: 600px;
+    text-align: center;
+    margin: 20px auto; }
+    section.contact-form form input, section.contact-form form textarea {
+      border: 0;
+      outline: 0;
+      padding: 1em;
+      display: block;
+      width: 100%;
+      margin-top: 1em;
+      font-family: 'Merriweather', sans-serif;
+      resize: none; }
+    section.contact-form form #input-submit {
+      color: white;
+      background: #e74c3c;
+      cursor: pointer; }
+    section.contact-form form textarea {
+      height: 126px; }
+  section.contact-form .half {
+    float: left;
+    width: 48%;
+    margin-bottom: 1em; }
+  section.contact-form .right {
+    width: 50%; }
+  section.contact-form .left {
+    margin-right: 2%; }
+  @media (max-width: 480px) {
+    section.contact-form .half {
+      width: 100%;
+      float: none;
+      margin-bottom: 0; } }
+  section.contact-form .cf:before,
+  section.contact-form .cf:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */ }
+  section.contact-form .cf:after {
+    clear: both; }
+
+footer {
+  width: 100%;
+  color: #fff;
+  background-color: #232d37;
+  padding: 25px 15px 10px;
+  text-align: center;
+  float: right; }
+  footer p {
+    color: #465769;
+    font-size: 12px;
+    line-height: 1.4; }
+    footer p a {
+      color: inherit; }
+  footer p:first-child {
+    font-size: 14px;
+    line-height: normal;
+    margin-bottom: 25px; }
+  footer .footer__social-icons a:nth-child(2) {
+    margin: 0 30px; }
+  @media screen and (max-width: 900px) {
+    footer {
+      padding-bottom: 60px; } }
+
 .title-container {
   color: black;
   text-align: center; }
 
 .enter-addr {
-  margin-top: 15%; }
+  margin-bottom: 15%; }
 
 .content-list {
   width: 100%;
@@ -162,36 +242,80 @@ a:hover {
   color: white; }
 
 main.content {
-  background: no-repeat center center;
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0; }
   main.content .title-container h1 {
     font-family: MuseoSans500, Verdana, Geneva, sans-serif;
     color: #343e44; }
-  main.content .content-show section {
-    min-height: calc(100vh - 285px); }
-  main.content .content-show .checkout-container .checkout {
-    display: none;
-    background-color: #f7f8f9; }
-    main.content .content-show .checkout-container .checkout .row {
-      margin: 0; }
-      main.content .content-show .checkout-container .checkout .row h4,
-      main.content .content-show .checkout-container .checkout .row .prod-desc {
-        padding: 0;
-        float: left; }
-      main.content .content-show .checkout-container .checkout .row p {
-        margin: 10px auto;
-        float: right; }
-    main.content .content-show .checkout-container .checkout .btn-compra {
-      width: 100%;
-      margin: 20px auto; }
-    main.content .content-show .checkout-container .checkout #productsContainer .cart-prod-cant {
-      background: white;
-      padding: 5px;
-      margin: 5px;
-      border-radius: 5px; }
+  main.content header.content-show {
+    width: 100%;
+    height: calc(100vh - 42px);
+    background: url("../images/image5.jpg") no-repeat center;
+    background-size: 70vmax;
+    background-position: bottom;
+    top: 0;
+    margin: 0;
+    padding: 0; }
+    main.content header.content-show .header-container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      height: 100%; }
+      main.content header.content-show .header-container .row {
+        margin: 0; }
+      main.content header.content-show .header-container .title-container {
+        width: 80%;
+        max-width: 600px;
+        margin: 0 auto; }
+        main.content header.content-show .header-container .title-container h1,
+        main.content header.content-show .header-container .title-container h2 {
+          color: rgba(255, 255, 255, 0.3); }
+        main.content header.content-show .header-container .title-container .pichi-logo, main.content header.content-show .header-container .title-container h1 {
+          float: left; }
+        main.content header.content-show .header-container .title-container .pichi-logo {
+          width: 20%;
+          margin-right: 5%;
+          /*
+          max-width: 400px;
+          margin: 0 auto;
+          */ }
+          main.content header.content-show .header-container .title-container .pichi-logo svg path {
+            fill: rgba(255, 255, 255, 0.2); }
+        main.content header.content-show .header-container .title-container h1 {
+          padding-top: 6%;
+          font-family: 'Mogra', cursive;
+          margin: 0;
+          font-size: 4em; }
+          @media screen and (max-width: 730px) {
+            main.content header.content-show .header-container .title-container h1 {
+              font-size: xx-large; } }
+      main.content header.content-show .header-container #searchForm .form-group {
+        margin: 0; }
+        main.content header.content-show .header-container #searchForm .form-group input#addrHome:focus {
+          outline: none !important;
+          border: 0; }
+        main.content header.content-show .header-container #searchForm .form-group .input-group {
+          width: 80%;
+          margin: 0 auto; }
+    main.content header.content-show .checkout-container .checkout {
+      display: none;
+      background-color: #f7f8f9; }
+      main.content header.content-show .checkout-container .checkout .row {
+        margin: 0; }
+        main.content header.content-show .checkout-container .checkout .row h4,
+        main.content header.content-show .checkout-container .checkout .row .prod-desc {
+          padding: 0;
+          float: left; }
+        main.content header.content-show .checkout-container .checkout .row p {
+          margin: 10px auto;
+          float: right; }
+      main.content header.content-show .checkout-container .checkout .btn-compra {
+        width: 100%;
+        margin: 20px auto; }
+      main.content header.content-show .checkout-container .checkout #productsContainer .cart-prod-cant {
+        background: white;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px; }
   main.content .cart-btn:before {
     content: "cart"; }
   @media screen and (max-width: 900px) {
@@ -288,47 +412,5 @@ main.content {
   text-transform: capitalize;
   width: 100%;
   z-index: 1030; }
-
-footer {
-  color: #fff;
-  background-color: #232d37;
-  width: 100%;
-  padding: 25px 15px 10px;
-  text-align: center;
-  float: right; }
-  footer p {
-    color: #465769;
-    font-size: 12px;
-    line-height: 1.4; }
-    footer p a {
-      color: inherit; }
-  footer p:first-child {
-    font-size: 14px;
-    line-height: normal;
-    margin-bottom: 25px; }
-  footer .footer__social-icons a:nth-child(2) {
-    margin: 0 30px; }
-  @media screen and (max-width: 900px) {
-    footer {
-      padding-bottom: 60px; } }
-
-@media (min-width: 900px) {
-  .menu-footer__cart-meta {
-    display: none; }
-
-  main.content .content-show {
-    padding: 0 10%; }
-    main.content .content-show .content-list {
-      width: 60%; }
-    main.content .content-show .checkout-container {
-      width: 35%;
-      height: auto;
-      float: right; }
-      main.content .content-show .checkout-container .checkout {
-        display: block;
-        max-width: 400px;
-        padding: 20px;
-        margin: 20px auto;
-        border-radius: 5px; } }
 
 /*# sourceMappingURL=styles.css.map */

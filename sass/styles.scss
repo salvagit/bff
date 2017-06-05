@@ -1,92 +1,13 @@
+@import 'common';
+@import 'variables';
 @import 'reset';
 
-* {
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-}
+@import 'header';
+@import 'steps';
+@import 'contactForm';
+@import 'footer';
 
-// font-face
-@font-face{
-  font-family: 'MuseoSans100';
-  src: url('../font/museosans-100-webfont.eot');
-  src: url('../font/museosans-100-webfont.eot?iefix') format('eot'),
-  url('../font/museosans-100-webfont.woff2') format('woff2'),
-  url('../font/museosans-100-webfont.woff') format('woff'),
-  url('../font/museosans-100-webfont.ttf') format('truetype'),
-  url('../font/museosans-100-webfont.svg#webfont') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face{
-  font-family: 'MuseoSans500';
-  src: url('../font/museosans-500-webfont.eot');
-  src: url('../font/museosans-500-webfont.eot?iefix') format('eot'),
-  url('../font/museosans-500-webfont.woff2') format('woff2'),
-  url('../font/museosans-500-webfont.woff') format('woff'),
-  url('../font/museosans-500-webfont.ttf') format('truetype'),
-  url('../font/museosans-500-webfont.svg#webfont') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-$soft-blue: #6b9ac0;
-$soft-gray: #f7f8f9;
-$red: #ef3b41;
-
-// box-sizing for everyone!
-* { box-sizing: border-box; }
-*:focus { outline: none!important; }
-
-html, body {
-  color: #343e44;
-  font-family: "HelveticaNeueLTStd", Helvetica, sans-serif;
-  -webkit-font-smoothing: subpixel-antialiased;
-  -webkit-text-size-adjust: none;
-  -ms-text-size-adjust: none;
-  text-size-adjust: none;
-
-  font-family: MuseoSans100, Verdana, Geneva, sans-serif;
-  font-size: 12px;
-  height: 100%;
-
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  width: 100%;
-  &.modal-open {padding-right: 0!important;}
-}
-p { margin: 0; }
-hr { border-top: 1px solid #9db2c3!important; }
-
-a:hover { text-decoration: none!important; }
-
-.w100 {width: 100%;}
-.center {margin: 0 auto;}
-.left {float: left;}
-.right {float: right!important;}
-.round {border-radius: 50%!important;}
-
-// header
-.header {
-  background-color: #eaebed;
-  padding: 13px 0 9px 0;
-  position: relative;
-  text-align: center;
-
-  h1 {
-    color: #418fcd;
-
-    img {
-      display: inline-block;
-      width: 200px;
-    }
-  }
-}
+@import url('https://fonts.googleapis.com/css?family=Mogra&subset=latin-ext');
 
 .title-container {
   color: black;
@@ -94,7 +15,7 @@ a:hover { text-decoration: none!important; }
 }
 
 .enter-addr {
- margin-top: 15%;
+ margin-bottom: 15%;
 }
 
 .content-list {
@@ -136,9 +57,7 @@ a:hover { text-decoration: none!important; }
 }
 
 main.content {
-  background: no-repeat center center;
-  width: 100%;
-  height: 100%;
+
   margin: 0;
   padding: 0;
   .title-container {
@@ -147,10 +66,80 @@ main.content {
       color: #343e44;
     }
   }
-  .content-show {
-    section {
-      min-height: calc(100vh - 285px);
+  header.content-show {
+    width: 100%;
+    height: calc(100vh - 42px);
+
+    background: url('../images/image5.jpg') no-repeat center;
+    background-size: 70vmax;
+
+    background-position: bottom;
+
+    top: 0;
+
+    margin: 0;
+    padding: 0;
+
+    .header-container {
+      text-align: center;
+      background: rgba(0, 0, 0, .6);
+      height: 100%;
+      .row {margin:0;}
+      .title-container {
+        width: 80%;
+        max-width: 600px;
+        margin: 0 auto;
+        h1,
+        h2 {
+          color: rgba(255, 255, 255, .3);
+        }
+        .pichi-logo, h1 {
+          float: left;
+        }
+        .pichi-logo {
+          width: 20%;
+          margin-right: 5%;
+          /*
+          max-width: 400px;
+          margin: 0 auto;
+          */
+          svg {
+            path {
+              fill: rgba(255, 255, 255, .2);
+            }
+          }
+        }
+        h1 {
+          // width: 60%;
+          padding-top: 6%;
+          font-family: 'Mogra', cursive;
+          margin: 0;
+          font-size: 4em;
+          @media screen and (max-width: 730px){
+            font-size: xx-large;
+          }
+        }
+      }
+      section {
+        // min-height: calc(100vh - 285px);
+      }
+      #searchForm {
+        .form-group {
+          margin: 0;
+
+          input#addrHome:focus {
+            outline: none!important;
+            border: 0;
+          }
+
+          .input-group {
+            width: 80%;
+            margin: 0 auto;
+          }
+        }
+      }
     }
+
     .checkout-container {
       .checkout {
         display: none;
@@ -185,6 +174,7 @@ main.content {
   .cart-btn:before {
     content: "cart";
   }
+
   @media screen and (max-width: 900px) {
     &.checkout-mobile {
       .cart-btn:before {
@@ -308,68 +298,4 @@ main.content {
   text-transform: capitalize;
   width: 100%;
   z-index: 1030;
-}
-
-// footer
-footer {
-
-  color: #fff;
-  background-color: #232d37;
-  width: 100%;
-  padding: 25px 15px 10px;
-  text-align: center;
-  float: right;
-
-  p {
-    color: #465769;
-    font-size: 12px;
-    line-height: 1.4;
-
-    a { color: inherit; }
-  }
-
-  p:first-child {
-    font-size: 14px;
-    line-height: normal;
-    margin-bottom: 25px;
-  }
-
-  .footer__social-icons {
-    a:nth-child(2) {
-      margin: 0 30px;
-    }
-  }
-
-  @media screen and (max-width: 900px) {
-    padding-bottom: 60px;
-  }
-}
-
-@media (min-width: 900px) {
-
-  .menu-footer__cart-meta { display: none; }
-
-  main.content {
-    .content-show {
-      padding: 0 10%;
-      .content-list {
-        width: 60%;
-      }
-      .checkout-container {
-        width: 35%;
-        height: auto;
-        float: right;
-
-        .checkout {
-          display: block;
-          max-width: 400px;
-
-          padding: 20px;
-          margin: 20px auto;
-
-          border-radius: 5px;
-        }
-      }
-    }
-  }
 }

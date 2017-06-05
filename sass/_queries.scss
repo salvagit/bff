@@ -1,0 +1,32 @@
+/**
+ * Media Queries.
+ */
+
+@media (min-width: 900px) {
+
+  .menu-footer__cart-meta { display: none; }
+
+  main.content {
+    .content-show {
+      padding: 0 10%;
+      .content-list {
+        width: 60%;
+      }
+      .checkout-container {
+        width: 35%;
+        height: auto;
+        float: right;
+
+        .checkout {
+          display: block;
+          max-width: 400px;
+
+          padding: 20px;
+          margin: 20px auto;
+
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
