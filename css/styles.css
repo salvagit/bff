@@ -784,7 +784,8 @@ main.content {
       main.content header.content-show .header-container .title-container {
         width: 80%;
         max-width: 600px;
-        margin: 0 auto; }
+        margin: 0 auto;
+        padding: 65px 0 30px; }
         main.content header.content-show .header-container .title-container h1,
         main.content header.content-show .header-container .title-container h2 {
           color: rgba(255, 255, 255, 0.3); }
@@ -806,10 +807,14 @@ main.content {
           font-size: 4em; }
           @media screen and (max-width: 730px) {
             main.content header.content-show .header-container .title-container h1 {
-              font-size: xx-large; } }
+              font-size: 250%; } }
+          @media screen and (max-width: 410px) {
+            main.content header.content-show .header-container .title-container h1 {
+              font-size: 195%; } }
       main.content header.content-show .header-container #searchForm .form-group {
         margin: 0; }
         main.content header.content-show .header-container #searchForm .form-group #addrHome {
+          max-width: 585px;
           border: 2px solid rgba(255, 255, 255, 0.5);
           font-size: 1.75em;
           padding: .25em .5em .3125em;
@@ -822,7 +827,9 @@ main.content {
             box-shadow: none; }
         main.content header.content-show .header-container #searchForm .form-group .input-group {
           width: 80%;
-          margin: 0 auto; }
+          max-width: 585px;
+          margin: 0 auto;
+          text-align: center; }
   main.content .checkout-container .checkout {
     display: none;
     background-color: #f7f8f9; }

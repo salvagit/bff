@@ -94,6 +94,8 @@ main.content {
         width: 80%;
         max-width: 600px;
         margin: 0 auto;
+        padding: 65px 0 30px;
+
         h1,
         h2 {
           color: rgba(255, 255, 255, .3);
@@ -121,7 +123,10 @@ main.content {
           margin: 0;
           font-size: 4em;
           @media screen and (max-width: 730px){
-            font-size: xx-large;
+            font-size: 250%;
+          }
+          @media screen and (max-width: 410px){
+            font-size: 195%;
           }
         }
       }
@@ -138,6 +143,7 @@ main.content {
               border:2px solid rgba(255,255,255,.5);
               box-shadow: none;
             }
+            max-width: 585px;
             border:2px solid rgba(255,255,255,.5);
             font-size:1.75em;
             padding:.25em .5em .3125em;
@@ -148,7 +154,9 @@ main.content {
 
           .input-group {
             width: 80%;
+            max-width: 585px;
             margin: 0 auto;
+            text-align: center;
           }
         }
       }
