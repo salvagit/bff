@@ -60,8 +60,19 @@ var Main = {
         priceUpBtn = filterBox.querySelector('.price-up'),
         priceDownBtn = filterBox.querySelector('.price-down');
 
-    priceUpBtn.addEventListener('click', function(){alert('arriba');});
-    priceDownBtn.addEventListener('click', function(){alert('abajo');});
+    function sorting () {
+      console.log('sorting');
+      console.log(this);
+
+      console.log(Main.products);
+      console.log(Main.products.sort(function(a,b) {return a.price > b.price;}));
+
+      Main.products = Main.products.sort(function(a,b) {return a.price < b.price;});
+      Main.renderFood();
+    }
+
+    priceUpBtn.addEventListener('click', sorting);
+    priceDownBtn.addEventListener('click', sorting);
   },
 
   getProviders: function () {
@@ -98,7 +109,6 @@ var Main = {
     products.forEach(function(prod){
       Main.renderFoodItem(prod);
     });
-    this.products = this.products.sort(function(a,b) {return a.price > b.price;});
     this.renderPaginator();
   },
 
