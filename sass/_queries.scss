@@ -2,11 +2,10 @@
  * Media Queries.
  */
 
-@media (min-width: 900px) {
-
-  .menu-footer__cart-meta { display: none; }
+@media screen and (min-width: 900px) {
 
   main.content {
+    div.menu-footer__cart-meta { display: none; }
     .content-show {
       padding: 0 10%;
       .content-list {

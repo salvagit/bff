@@ -682,10 +682,9 @@ footer {
 /**
  * Media Queries.
  */
-@media (min-width: 900px) {
-  .menu-footer__cart-meta {
+@media screen and (min-width: 900px) {
+  main.content div.menu-footer__cart-meta {
     display: none; }
-
   main.content .content-show {
     padding: 0 10%; }
     main.content .content-show .content-list {
@@ -802,26 +801,26 @@ main.content {
         main.content header.content-show .header-container #searchForm .form-group .input-group {
           width: 80%;
           margin: 0 auto; }
-    main.content header.content-show .checkout-container .checkout {
-      display: none;
-      background-color: #f7f8f9; }
-      main.content header.content-show .checkout-container .checkout .row {
-        margin: 0; }
-        main.content header.content-show .checkout-container .checkout .row h4,
-        main.content header.content-show .checkout-container .checkout .row .prod-desc {
-          padding: 0;
-          float: left; }
-        main.content header.content-show .checkout-container .checkout .row p {
-          margin: 10px auto;
-          float: right; }
-      main.content header.content-show .checkout-container .checkout .btn-compra {
-        width: 100%;
-        margin: 20px auto; }
-      main.content header.content-show .checkout-container .checkout #productsContainer .cart-prod-cant {
-        background: white;
-        padding: 5px;
-        margin: 5px;
-        border-radius: 5px; }
+  main.content .checkout-container .checkout {
+    display: none;
+    background-color: #f7f8f9; }
+    main.content .checkout-container .checkout .row {
+      margin: 0; }
+      main.content .checkout-container .checkout .row h4,
+      main.content .checkout-container .checkout .row .prod-desc {
+        padding: 0;
+        float: left; }
+      main.content .checkout-container .checkout .row p {
+        margin: 10px auto;
+        float: right; }
+    main.content .checkout-container .checkout .btn-compra {
+      width: 100%;
+      margin: 20px auto; }
+    main.content .checkout-container .checkout #productsContainer .cart-prod-cant {
+      background: white;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 5px; }
   main.content .cart-btn:before {
     content: "cart"; }
   @media screen and (max-width: 900px) {
@@ -897,8 +896,6 @@ main.content {
   width: 100%; }
 
 .menu-footer__cart-meta {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   -webkit-box-align: center;

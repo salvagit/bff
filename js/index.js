@@ -30,6 +30,7 @@ var Main = {
   init: function () {
     this.form = document.getElementById('searchForm');
     this.bindActions();
+    this.pingService();
   },
   bindActions: function () {
 
@@ -49,6 +50,10 @@ var Main = {
   submitForm: function () {
     var submitForm = new Event('submit');
     this.form.dispatchEvent(submitForm);
+  },
+  pingService: function() {
+    $.get('https://pichifood.herokuapp.com/getFoodByLocation/-58.44537639999999/-34.5496618',
+          function(data){console.log(data);});
   }
 };
 
