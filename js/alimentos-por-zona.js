@@ -19,7 +19,7 @@ var Main = {
   data: {},
   selectedItem: {},
   itemsPerPage: 10,
-  pageActive: 0,
+  pageActive: 1,
 
   init: function () {
     Main.loc.lng = parseFloat(getParameterByName('lng'));
@@ -52,10 +52,10 @@ var Main = {
         // window.location = apiUrl + '/checkout';
       });
     });
-    this.filterActions();
   },
 
   filterActions: function() {
+
     var filterBox = document.querySelector('#foodItemsFilter'),
         priceUpBtn = filterBox.querySelector('.price-up'),
         priceDownBtn = filterBox.querySelector('.price-down');
@@ -71,6 +71,37 @@ var Main = {
 
     priceUpBtn.addEventListener('click', sorting);
     priceDownBtn.addEventListener('click', sorting);
+
+    var arrBrands = [];
+    Main.products.forEach(function(p) {
+    	if (arrBrands.indexOf(p.brand) === -1) arrBrands.push(p.brand);
+    });
+
+    function doFilter() {
+      var brand = this.innerHTML;
+
+      var asd = Main.products.filter(function (p) {
+        return p.brand === brand;
+      });
+
+      console.log(asd);
+      Main.renderFood(asd);
+    }
+
+    arrBrands.forEach(function(el) {
+      var a = document.createElement('a');
+      var li = document.createElement('li');
+      a.innerHTML = el;
+      a.role = "menuitem";
+      a.href = "#";
+      a.onclick = doFilter;
+      // li.role = "presentation";
+      li.appendChild(a);
+      document.querySelector('.filter-brand')
+      .querySelector('.dropdown-menu')
+      .append(li);
+    });
+
   },
 
   getProviders: function () {
@@ -82,13 +113,13 @@ var Main = {
                cache: 'default' };
     fetch(url, init)
     .then(function(response){return response.json();})
-    .then(function(data){Main.filterFood(data);});
+    .then(function(data){Main.filterFood(data.providers);});
   },
 
   filterFood: function (data) {
     // @todo resolve from server side.
     var arrProds = [];
-    data.providers.forEach(function (el) {
+    data.forEach(function (el) {
       if(!el.products) return false;
       el.products.forEach(function(prod) {
         prod.providerId = el._id;
@@ -97,7 +128,8 @@ var Main = {
       });
     });
     this.products = arrProds;
-    this.renderFood();
+    this.filterActions();
+    this.renderFood(arrProds);
   },
 
   renderFood: function (products) {
@@ -107,7 +139,7 @@ var Main = {
     products.forEach(function(prod){
       Main.renderFoodItem(prod);
     });
-    this.renderPaginator();
+    this.renderPaginator(products);
   },
 
   renderFoodItem: function (prod) {
@@ -124,10 +156,10 @@ var Main = {
     document.getElementsByClassName('content-list')[0].appendChild(el.getElementsByTagName('a')[0]);
   },
 
-  renderPaginator: function () {
+  renderPaginator: function (prods) {
     var ul = document.createElement('ul');
     ul.className = 'pagination center';
-    pages = Math.floor(Main.products.length / this.itemsPerPage);
+    pages = Math.floor(prods.length / this.itemsPerPage);
     for (var i = 0; i < pages; i++) {
       var li = document.createElement('li');
       if (i === Main.pageActive - 1) li.className = "active";
