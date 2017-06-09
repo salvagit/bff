@@ -61,13 +61,11 @@ var Main = {
         priceDownBtn = filterBox.querySelector('.price-down');
 
     function sorting () {
-      console.log('sorting');
-      console.log(this);
-
-      console.log(Main.products);
-      console.log(Main.products.sort(function(a,b) {return a.price > b.price;}));
-
-      Main.products = Main.products.sort(function(a,b) {return a.price < b.price;});
+      var isUp = (this.className.indexOf('up') > 0);
+      Main.products = Main.products.sort(function(a,b) {
+        if (isUp) return b.price - a.price;
+        else return a.price - b.price;
+      });
       Main.renderFood();
     }
 
