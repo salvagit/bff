@@ -449,7 +449,7 @@ section.contact-form {
     overflow: hidden; }
     .corgi .face__curve:after {
       content: "";
-      background-color: #8C5A46;
+      background-color: #fff;
       position: absolute;
       width: 69%;
       height: 82%;
