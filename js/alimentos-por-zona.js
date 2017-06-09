@@ -88,6 +88,7 @@ var Main = {
     products.forEach(function(prod){
       Main.renderFoodItem(prod);
     });
+    this.products = this.products.sort(function(a,b) {return a.price > b.price;});
     this.renderPaginator();
   },
 

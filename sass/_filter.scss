@@ -1,0 +1,23 @@
+// body > main > section > div > div
+
+#foodItemsFilter {
+  .order {
+    padding-top: 5px;
+    padding-right: 0;
+    color: $soft-blue;
+    margin: 0;
+    text-align: right;
+    small {
+      display: inline-block;
+      vertical-align: text-top;
+      margin-right: 3px;
+    }
+    span {
+      // float: right;
+      // margin-left: 2px;
+    }
+    @media screen and (min-width: 900px) {
+      padding-right: 15px;
+    }
+  }
+}

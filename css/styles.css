@@ -679,6 +679,20 @@ footer {
     footer {
       padding-bottom: 60px; } }
 
+#foodItemsFilter .order {
+  padding-top: 5px;
+  padding-right: 0;
+  color: #6b9ac0;
+  margin: 0;
+  text-align: right; }
+  #foodItemsFilter .order small {
+    display: inline-block;
+    vertical-align: text-top;
+    margin-right: 3px; }
+  @media screen and (min-width: 900px) {
+    #foodItemsFilter .order {
+      padding-right: 15px; } }
+
 /**
  * Media Queries.
  */
@@ -725,7 +739,6 @@ footer {
   width: auto;
   min-width: 70px;
   height: 50px;
-  margin-top: -5px;
   float: right;
   background-color: transparent;
   border: 0.3px solid #6b9ac0;
@@ -826,15 +839,16 @@ main.content {
   @media screen and (max-width: 900px) {
     main.content.checkout-mobile .cart-btn:before {
       content: "close"; }
-    main.content.checkout-mobile div .content-show .content-list {
+    main.content.checkout-mobile .content-show .content-list {
       opacity: 0; }
-    main.content.checkout-mobile div .content-show .checkout-container .checkout {
+    main.content.checkout-mobile .content-show .checkout-container .checkout {
       width: 100%;
       display: block;
       position: absolute;
       z-index: 1020;
       top: 0;
-      padding: 10%; }
+      padding: 10%;
+      padding-top: 15%; }
     main.content.checkout-mobile .footer {
       display: none; }
     main.content.checkout-mobile .menu-footer__cart-meta {
@@ -888,6 +902,11 @@ main.content {
   display: block;
   padding: 25px 0;
   text-decoration: none; }
+  .content-list .list-item-event img, .content-list .list-item-event .title, .content-list .list-item-event .pichi-button {
+    display: inline-block;
+    vertical-align: middle; }
+  .content-list .list-item-event .title {
+    width: 42%; }
 
 .footer__social-icons {
   border-top: 1px solid #9ea1a7;
