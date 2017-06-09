@@ -689,6 +689,13 @@ footer {
     display: inline-block;
     vertical-align: text-top;
     margin-right: 3px; }
+  #foodItemsFilter .order span {
+    margin-left: 22px;
+    transform: scale(2.6); }
+    @media screen and (min-width: 900px) {
+      #foodItemsFilter .order span {
+        margin-left: 0px;
+        transform: scale(1); } }
   @media screen and (min-width: 900px) {
     #foodItemsFilter .order {
       padding-right: 15px; } }

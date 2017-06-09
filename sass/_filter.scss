@@ -14,7 +14,12 @@
     }
     span {
       // float: right;
-      // margin-left: 2px;
+      margin-left: 22px;
+      transform: scale(2.6);
+      @media screen and (min-width: 900px) {
+        margin-left: 0px;
+        transform: scale(1);
+      }
     }
     @media screen and (min-width: 900px) {
       padding-right: 15px;
