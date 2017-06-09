@@ -31,7 +31,7 @@ var Main = {
   },
 
   bindActions: function () {
-    document.querySelectorAll('.btn-compra').forEach(function(el){
+    document.querySelectorAll('.btn-compra').forEach(function(el) {
       el.addEventListener('click', function (e){
         e.preventDefault();
         var apiUrl = ('localhost' === window.location.hostname) ?
@@ -52,6 +52,16 @@ var Main = {
         // window.location = apiUrl + '/checkout';
       });
     });
+    this.filterActions();
+  },
+
+  filterActions: function() {
+    var filterBox = document.querySelector('#foodItemsFilter'),
+        priceUpBtn = filterBox.querySelector('.price-up'),
+        priceDownBtn = filterBox.querySelector('.price-down');
+
+    priceUpBtn.addEventListener('click', function(){alert('arriba');});
+    priceDownBtn.addEventListener('click', function(){alert('abajo');});
   },
 
   getProviders: function () {
