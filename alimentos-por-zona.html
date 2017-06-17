@@ -39,20 +39,23 @@
 
             <div class="products-list">
               <div id="foodItemsFilter" class="col-xs-12 col-md-8">
-                <div class="col-xs-3 col-md-4" style="padding-left:0">
+
+                <div class="col-xs-3 col-md-3" style="padding-left:0">
                   <div class="dropdown filter-brand">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="filterBrand" data-toggle="dropdown">Marcas
-                    <span class="caret"></span></button>
+                    <button class="btn btn-default dropdown-toggle" type="button" id="filterBrand" data-toggle="dropdown">
+                      Filtros
+                      <span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="filterBrand"></ul>
                   </div>
                 </div>
 
-                <div class="col-xs-3 col-md-4"></div>
+                <div id="activeFilters" class="col-xs-3 col-md-5"></div>
 
                 <div class="col-xs-6 col-md-3 order">
                   <small>precio</small>
-                  <span class="glyphicon glyphicon-collapse-up price-up" aria-hidden="true"></span>
-                  <span class="glyphicon glyphicon-collapse-down price-down" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-collapse-up price-sort price-up" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-collapse-down price-sort price-down" aria-hidden="true"></span>
                 </div>
               </div>
               <article class="content-list">carganding ..</article>
@@ -115,7 +118,7 @@
             </div>
             <hr>
             <p>2017 Pichifood. Todos los derechos reservados.</p>
-            <p>El uso del sitio implica la aceptación de los <a href="#">términos y condiciones</a> y de las <a href="#">políticas de privacidad</a>.</p>
+            <!--p>El uso del sitio implica la aceptación de los <a href="#">términos y condiciones</a> y de las <a href="#">políticas de privacidad</a>.</p-->
           </footer>
 
           <div class="menu-footer__cart-meta">
@@ -194,7 +197,7 @@
 
 
                 <div class="modal-footer">
-                  <button type="button" class="addToCart btn btn-danger w100">AGREGAR AL CARLITOS</button>
+                  <button type="button" class="addToCart btn btn-danger w100">AGREGAR AL CARRITO</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -209,7 +212,7 @@
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.2/fetch.js"></script>
-        <script src="js/alimentos-por-zona.js"></script>
+        <script src="js/alimentos-por-zona.js?q=123123123"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

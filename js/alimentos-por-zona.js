@@ -21,23 +21,38 @@ var Main = {
   itemsPerPage: 10,
   pageActive: 1,
 
+  products: {
+    original: [],
+    filtered: []
+  },
+
   init: function () {
     Main.loc.lng = parseFloat(getParameterByName('lng'));
     Main.loc.lat = parseFloat(getParameterByName('lat'));
     Main.addr = decodeURIComponent(getParameterByName('q'));
-    this.getProviders();
+
+    this.getProducts()
+    .then(function(prods) {
+      Main.products.original = prods;
+      Main.filter.init(prods);
+      Main.renderFood(prods);
+    });
+
     this.updateCart();
-    this.bindActions();
+    this.bindActions.init();
   },
 
-  bindActions: function () {
-    document.querySelectorAll('.btn-compra').forEach(function(el) {
-      el.addEventListener('click', function (e){
+  bindActions: {
+    init: function () {
+      this.checkout();
+      this.sorts.init();
+    },
+    checkout: function () {
+      function doCheckout(e) {
         e.preventDefault();
-        var apiUrl = ('localhost' === window.location.hostname) ?
-                            'http://localhost:8086' :
-                            'https://pichifood.herokuapp.com';
-
+        var apiUrl = ('pichi.local' === window.location.hostname) ?
+        'http://localhost:8086' :
+        'https://pichifood.herokuapp.com';
         $.ajax({
           url: apiUrl + '/checkout',
           method: 'post',
@@ -49,97 +64,150 @@ var Main = {
             console.error(err);
           }
         });
-        // window.location = apiUrl + '/checkout';
+      }
+      document.querySelectorAll('.btn-compra').forEach(function(el) {
+        el.addEventListener('click', doCheckout);
       });
+    },
+    // bind filters
+    filters: {
+      init: function (prods) {
+        this.render(prods);
+      },
+      render: function (prods) {
+        var brands = Main.filter.getBrands(prods);
+        document.querySelector('.filter-brand')
+        .querySelector('.dropdown-menu').innerHTML='';
+        brands.forEach(function(el) {
+          var a = document.createElement('a');
+          var li = document.createElement('li');
+          a.innerHTML = el;
+          a.role = "menuitem";
+          a.href = "#";
+          a.dataset.kind = "brand";
+          a.dataset.name = el.replace(' ','_').toLowerCase();
+          a.addEventListener('click', Main.bindActions.filters.pushFilter);
+          // li.role = "presentation";
+          li.appendChild(a);
+          document.querySelector('.filter-brand')
+          .querySelector('.dropdown-menu')
+          .append(li);
+        });
+      },
+      pushFilter: function () {
+        var chip = document.createElement('span'),
+            close = document.createElement('span'),
+            name = document.createElement('small');
+
+        chip.className = 'btn btn-default btn-xs pull-left';
+        Object.assign(chip.dataset, this.dataset);
+
+        close.className = 'close pull-left';
+
+        close.addEventListener('click', Main.filter.remove);
+        close.innerHTML = '&times;';
+
+        close.style.fontSize = '14px';
+        name.style.fontSize = '14px';
+
+        name.className = 'close';
+        name.innerHTML = this.dataset.name;
+
+        chip.appendChild(close);
+        chip.appendChild(name);
+
+        document.getElementById('activeFilters').appendChild(chip);
+        Main.bindActions.filters.refresh();
+      },
+      refresh: function () {
+        console.log('refreshing ..');
+        var filters = document.querySelectorAll('#activeFilters > span');
+        if (!filters.length) Main.filter.reset();
+        filters.forEach(function(el) {
+          Main.filter.init(Main.products.filtered, el.dataset, true);
+        });
+      }
+    },
+    // sorting.
+    sorts: {
+      init: function() {
+        var filterBox = document.querySelector('#foodItemsFilter');
+        filterBox.querySelectorAll('.price-sort').forEach(function(el){
+          el.addEventListener('click', Main.sort.price);
+        });
+      }
+    }
+  },
+
+  getProducts: function () {
+    var url = 'https://pichifood.herokuapp.com/getFoodByLocation/' + Main.loc.lng + '/' + Main.loc.lat,
+    headers = new Headers(),
+    init = { method: 'GET',
+    headers: headers,
+    mode: 'cors',
+    cache: 'default' };
+    return new Promise (function (resolve, reject){
+      fetch(url, init)
+      .then(function(response){return response.json();})
+      .then(function(data){resolve(data.prods);});
     });
   },
 
-  filterActions: function() {
+  filter: {
+    init:function (data, filter, render) {
+      if (filter) {
+        Main.products.filtered = Main.products.original.filter(function(a) {
+          console.log(a[filter.kind].replace(' ','_').toLowerCase());
+          return a[filter.kind]
+          .replace(' ','_')
+          .toLowerCase() == filter.name;
+        });
+      } else {
+        Main.products.filtered = data;
+      }
+      Main.bindActions.filters.init(Main.products.original);
+      if(render) Main.renderFood(Main.products.filtered);
+    },
+    remove: function(el) {
+      var chip = el.target.parentNode;
+      chip.parentNode.removeChild(chip);
+      Main.bindActions.filters.refresh();
+    },
+    reset: function () {
+      console.log('reset ..');
+      Main.renderFood(Main.products.original);
+      Main.products.filtered = Main.products.original;
+    },
+    getBrands: function (prods) {
+      var arrBrands = [];
+      prods.forEach(function(p) {
+        if (arrBrands.indexOf(p.brand) === -1) arrBrands.push(p.brand);
+      });
+      return arrBrands;
+    }
+  },
 
-    var filterBox = document.querySelector('#foodItemsFilter'),
-        priceUpBtn = filterBox.querySelector('.price-up'),
-        priceDownBtn = filterBox.querySelector('.price-down');
-
-    function sorting () {
+  sort: {
+    price: function () {
       var isUp = (this.className.indexOf('up') > 0);
-      Main.products = Main.products.sort(function(a,b) {
+      Main.products.filtered = Main.products.filtered.sort(function(a,b) {
         if (isUp) return b.price - a.price;
         else return a.price - b.price;
       });
-      Main.renderFood();
+      Main.renderFood(Main.products.filtered);
     }
-
-    priceUpBtn.addEventListener('click', sorting);
-    priceDownBtn.addEventListener('click', sorting);
-
-    var arrBrands = [];
-    Main.products.forEach(function(p) {
-    	if (arrBrands.indexOf(p.brand) === -1) arrBrands.push(p.brand);
-    });
-
-    function doFilter() {
-      var brand = this.innerHTML;
-
-      var asd = Main.products.filter(function (p) {
-        return p.brand === brand;
-      });
-
-      console.log(asd);
-      Main.renderFood(asd);
-    }
-
-    arrBrands.forEach(function(el) {
-      var a = document.createElement('a');
-      var li = document.createElement('li');
-      a.innerHTML = el;
-      a.role = "menuitem";
-      a.href = "#";
-      a.onclick = doFilter;
-      // li.role = "presentation";
-      li.appendChild(a);
-      document.querySelector('.filter-brand')
-      .querySelector('.dropdown-menu')
-      .append(li);
-    });
-
-  },
-
-  getProviders: function () {
-    var url = 'https://pichifood.herokuapp.com/getFoodByLocation/' + Main.loc.lng + '/' + Main.loc.lat,
-        misCabeceras = new Headers(),
-        init = { method: 'GET',
-               headers: misCabeceras,
-               mode: 'cors',
-               cache: 'default' };
-    fetch(url, init)
-    .then(function(response){return response.json();})
-    .then(function(data){Main.filterFood(data.providers);});
-  },
-
-  filterFood: function (data) {
-    // @todo resolve from server side.
-    var arrProds = [];
-    data.forEach(function (el) {
-      if(!el.products) return false;
-      el.products.forEach(function(prod) {
-        prod.providerId = el._id;
-        if(!prod.price || !prod.brand || !prod.line) return false;
-        arrProds.push(prod);
-      });
-    });
-    this.products = arrProds;
-    this.filterActions();
-    this.renderFood(arrProds);
   },
 
   renderFood: function (products) {
+    // do transition.
     window.scrollTo(0,0);
+    if(products.length > this.itemsPerPage) {
+      return this.paginate(products);
+    }
     document.getElementsByClassName('content-list')[0].innerHTML = '';
-    products = products || this.products.slice(0,this.itemsPerPage);
     products.forEach(function(prod){
       Main.renderFoodItem(prod);
     });
-    this.renderPaginator(products);
   },
 
   renderFoodItem: function (prod) {
@@ -156,17 +224,25 @@ var Main = {
     document.getElementsByClassName('content-list')[0].appendChild(el.getElementsByTagName('a')[0]);
   },
 
+  paginate: function (products, page = 1) {
+    products = products || this.products.filtered;
+    var to = page * Main.itemsPerPage;
+    var from = to - Main.itemsPerPage;
+    this.renderFood(products.slice(from, to));
+    this.renderPaginator(products);
+    document.querySelector('.pagination>li[data-page="'+page+'"]').className='active';
+  },
+
   renderPaginator: function (prods) {
     var ul = document.createElement('ul');
     ul.className = 'pagination center';
     pages = Math.floor(prods.length / this.itemsPerPage);
     for (var i = 0; i < pages; i++) {
       var li = document.createElement('li');
-      if (i === Main.pageActive - 1) li.className = "active";
       var a = document.createElement('a');
       a.href = "#";
       a.addEventListener('click', this.doPaginate);
-      a.innerHTML = i + 1;
+      li.dataset.page = a.innerHTML = i + 1;
       li.appendChild(a);
       ul.appendChild(li);
     }
@@ -175,15 +251,12 @@ var Main = {
 
   doPaginate: function(e) {
     e.preventDefault();
-    Main.pageActive = e.target.innerHTML;
-    var to = Main.pageActive * Main.itemsPerPage;
-    var from = to - Main.itemsPerPage;
-    Main.renderFood(Main.products.slice(from, to));
+    Main.paginate(false, e.target.parentNode.dataset.page);
   },
 
   clickFoodItem: function (e) {
     var data = this.dataset;
-    var prodObj = Main.products.filter(function(el) {
+    var prodObj = Main.products.filtered.filter(function(el) {
       //console.log ( (el.providerId === data.prov_id) && (el._id === parseInt(data.prod_id)) );
       return (el.providerId === data.prov_id) && (el._id === parseInt(data.prod_id));
     });
