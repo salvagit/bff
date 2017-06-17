@@ -26,6 +26,8 @@ var Main = {
     filtered: []
   },
 
+  filters: [],
+
   init: function () {
     Main.loc.lng = parseFloat(getParameterByName('lng'));
     Main.loc.lat = parseFloat(getParameterByName('lat'));
@@ -95,6 +97,13 @@ var Main = {
         });
       },
       pushFilter: function () {
+        var f = this.dataset;
+        //
+        if (Main.filters.filter(function(a) {
+          return a.kind == f.kind &&
+                 a.name == f.name;
+        }).length) return false;
+
         var chip = document.createElement('span'),
             close = document.createElement('span'),
             name = document.createElement('small');
@@ -120,12 +129,14 @@ var Main = {
         Main.bindActions.filters.refresh();
       },
       refresh: function () {
-        console.log('refreshing ..');
-        var filters = document.querySelectorAll('#activeFilters > span');
-        if (!filters.length) Main.filter.reset();
-        filters.forEach(function(el) {
-          Main.filter.init(Main.products.filtered, el.dataset, true);
+        var filters = [];
+        document.querySelectorAll('#activeFilters > span').forEach(function(el){
+          filters.push(el.dataset);
         });
+        Main.filters = filters;
+        if (!filters.length) Main.filter.reset();
+        Main.filter.init(Main.products.filtered, filters, true);
+        filters.forEach(function(el) {});
       }
     },
     // sorting.
@@ -154,17 +165,23 @@ var Main = {
   },
 
   filter: {
-    init:function (data, filter, render) {
-      if (filter) {
-        Main.products.filtered = Main.products.original.filter(function(a) {
-          console.log(a[filter.kind].replace(' ','_').toLowerCase());
-          return a[filter.kind]
-          .replace(' ','_')
-          .toLowerCase() == filter.name;
+    init:function (data, filters, render) {
+      if (filters && filters.length) {
+        console.log(filters);
+        Main.products.filtered = [];
+        filters.forEach(function(filter) {
+          console.log(Main.products.filtered);
+          var arr = Main.products.original.filter(function(a) {
+            return a[filter.kind]
+            .replace(' ','_')
+            .toLowerCase() == filter.name;
+          });
+          Main.products.filtered = Main.products.filtered.concat(arr);
         });
       } else {
         Main.products.filtered = data;
       }
+      // get filter options.
       Main.bindActions.filters.init(Main.products.original);
       if(render) Main.renderFood(Main.products.filtered);
     },
