@@ -306,9 +306,16 @@ var Main = {
 
   addToCart: function() {
     if (undefined === localStorage.pichikout) Main.saveLocalStorageObject([]);
-    var obj = Main.getLocalStorageObject();
-    obj.push(Main.selectedItem);
-    Main.saveLocalStorageObject(obj);
+    var cart = Main.getLocalStorageObject(),
+        f = cart.filter(function(a,b) {
+      a.pos = b;
+      return a._id == Main.selectedItem._id &&
+             a.partenId == Main.selectedItem.parentId;
+    });
+    if (f.length) cart[f[0].pos].quantity += Main.selectedItem.quantity;
+    else cart.push(Main.selectedItem);
+
+    Main.saveLocalStorageObject(cart);
     Main.updateCart();
     $('#modal').modal('hide');
   },
