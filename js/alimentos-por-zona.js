@@ -78,26 +78,48 @@ var Main = {
       },
       render: function (prods) {
         var brands = Main.filter.getBrands(prods);
+        var sizes = Main.filter.getSizes(prods);
+
+        function drawItems (arr, kind, title) {
+          var ddMenu = document.querySelector('.filter-brand')
+          .querySelector('.dropdown-menu');
+
+          ddMenu.insertAdjacentHTML('beforeend','<li class="dropdown-header">'+title+'</li>');
+
+          arr.forEach(function(el) {
+            if (Main.filters.filter(function(filter, b) {
+              console.log(filter);
+              return filter.show == el &&
+              filter.kind == kind;
+            }).length) return false;
+            var a = document.createElement('a');
+            var li = document.createElement('li');
+            a.innerHTML = el;
+            a.role = "menuitem";
+            a.href = "#";
+            a.dataset.kind = kind;
+            if ("number" === typeof el) el = el.toString();
+            a.dataset.name = el.replace(' ','_').toLowerCase();
+            a.dataset.show = el;
+            a.addEventListener('click', Main.bindActions.filters.pushFilter);
+            li.appendChild(a);
+
+            ddMenu.append(li);
+          });
+
+          ddMenu.insertAdjacentHTML('beforeend', '<li class="divider"></li>');
+        }
+        // clean filters.
         document.querySelector('.filter-brand')
         .querySelector('.dropdown-menu').innerHTML='';
-        brands.forEach(function(el) {
-          var a = document.createElement('a');
-          var li = document.createElement('li');
-          a.innerHTML = el;
-          a.role = "menuitem";
-          a.href = "#";
-          a.dataset.kind = "brand";
-          a.dataset.name = el.replace(' ','_').toLowerCase();
-          a.dataset.show = el;
-          a.addEventListener('click', Main.bindActions.filters.pushFilter);
-          // li.role = "presentation";
-          li.appendChild(a);
-          document.querySelector('.filter-brand')
-          .querySelector('.dropdown-menu')
-          .append(li);
-        });
+
+        drawItems(brands, "brand", "Marcas");
+        drawItems(sizes, "size", "Tamaños");
       },
-      pushFilter: function () {
+
+      pushFilter: function (e) {
+        e.preventDefault();
+        console.log('adding filter ..');
         var f = this.dataset;
         //
         if (Main.filters.filter(function(a) {
@@ -170,6 +192,7 @@ var Main = {
         filters.forEach(function(filter) {
           console.log(Main.products.filtered);
           var arr = Main.products.original.filter(function(a) {
+            if ("number" === typeof a[filter.kind]) a[filter.kind] = a[filter.kind].toString();
             return a[filter.kind]
             .replace(' ','_')
             .toLowerCase() == filter.name;
@@ -199,6 +222,13 @@ var Main = {
         if (arrBrands.indexOf(p.brand) === -1) arrBrands.push(p.brand);
       });
       return arrBrands;
+    },
+    getSizes: function (prods) {
+      var arrSizes = [];
+      prods.forEach(function(p) {
+        if (arrSizes.indexOf(p.size) === -1) arrSizes.push(p.size);
+      });
+      return arrSizes;
     }
   },
 
