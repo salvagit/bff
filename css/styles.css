@@ -682,7 +682,10 @@ footer {
 #foodItemsFilter {
   padding-top: 15px; }
   #foodItemsFilter .order {
-    padding-top: 5px;
+    /*
+    display: flex;
+    justify-content: space-around;
+    */
     padding-right: 0;
     color: #6b9ac0;
     margin: 0;
@@ -691,16 +694,24 @@ footer {
       display: inline-block;
       vertical-align: text-top;
       margin-right: 3px; }
-    #foodItemsFilter .order span {
-      margin-left: 22px;
-      transform: scale(2.6); }
-      @media screen and (min-width: 900px) {
-        #foodItemsFilter .order span {
-          margin-left: 0px;
-          transform: scale(1); } }
     @media screen and (min-width: 900px) {
       #foodItemsFilter .order {
-        padding-right: 15px; } }
+        padding-right: 15px;
+        padding-top: 5px; } }
+  #foodItemsFilter #activeFilters .chip {
+    width: 115px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 15px;
+    float: left; }
+    #foodItemsFilter #activeFilters .chip .close {
+      font-size: 14px;
+      transform: scale(1.5);
+      margin-left: 4px;
+      margin-top: 2px; }
+    #foodItemsFilter #activeFilters .chip .name {
+      font-size: 14px;
+      color: #cccccc; }
 
 /**
  * Media Queries.

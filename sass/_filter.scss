@@ -3,7 +3,11 @@
 #foodItemsFilter {
   padding-top: 15px;
   .order {
-    padding-top: 5px;
+    /*
+    display: flex;
+    justify-content: space-around;
+    */
+    // padding-top: 5px;
     padding-right: 0;
     color: $soft-blue;
     margin: 0;
@@ -13,17 +17,28 @@
       vertical-align: text-top;
       margin-right: 3px;
     }
-    span {
-      // float: right;
-      margin-left: 22px;
-      transform: scale(2.6);
-      @media screen and (min-width: 900px) {
-        margin-left: 0px;
-        transform: scale(1);
-      }
-    }
     @media screen and (min-width: 900px) {
       padding-right: 15px;
+      padding-top: 5px;
+    }
+  }
+  #activeFilters {
+    .chip {
+      width: 115px;
+      padding: 5px;
+      text-align: center;
+      border-radius: 15px;
+      float: left;
+      .close {
+        font-size: 14px;
+        transform: scale(1.5);
+        margin-left: 4px;
+        margin-top: 2px;
+      }
+      .name {
+        font-size: 14px;
+        color: #cccccc;
+      }
     }
   }
 }

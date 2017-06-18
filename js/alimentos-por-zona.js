@@ -88,6 +88,7 @@ var Main = {
           a.href = "#";
           a.dataset.kind = "brand";
           a.dataset.name = el.replace(' ','_').toLowerCase();
+          a.dataset.show = el;
           a.addEventListener('click', Main.bindActions.filters.pushFilter);
           // li.role = "presentation";
           li.appendChild(a);
@@ -108,7 +109,7 @@ var Main = {
             close = document.createElement('span'),
             name = document.createElement('small');
 
-        chip.className = 'btn btn-default btn-xs pull-left';
+        chip.className = 'chip btn btn-default btn-xs';
         Object.assign(chip.dataset, this.dataset);
 
         close.className = 'close pull-left';
@@ -116,11 +117,8 @@ var Main = {
         close.addEventListener('click', Main.filter.remove);
         close.innerHTML = '&times;';
 
-        close.style.fontSize = '14px';
-        name.style.fontSize = '14px';
-
-        name.className = 'close';
-        name.innerHTML = this.dataset.name;
+        name.className = 'name';
+        name.innerHTML = this.dataset.show;
 
         chip.appendChild(close);
         chip.appendChild(name);
