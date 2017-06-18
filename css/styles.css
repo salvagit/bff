@@ -680,13 +680,9 @@ footer {
       padding-bottom: 60px; } }
 
 #foodItemsFilter {
-  padding-top: 15px; }
+  padding-top: 15px;
+  width: 100%; }
   #foodItemsFilter .order {
-    /*
-    display: flex;
-    justify-content: space-around;
-    */
-    padding-right: 0;
     color: #6b9ac0;
     margin: 0;
     text-align: right; }
@@ -712,6 +708,9 @@ footer {
     #foodItemsFilter #activeFilters .chip .name {
       font-size: 14px;
       color: #cccccc; }
+  @media screen and (min-width: 900px) {
+    #foodItemsFilter {
+      width: 60%; } }
 
 /**
  * Media Queries.

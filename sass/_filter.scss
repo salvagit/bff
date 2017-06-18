@@ -2,13 +2,8 @@
 
 #foodItemsFilter {
   padding-top: 15px;
+  width: 100%;
   .order {
-    /*
-    display: flex;
-    justify-content: space-around;
-    */
-    // padding-top: 5px;
-    padding-right: 0;
     color: $soft-blue;
     margin: 0;
     text-align: right;
@@ -40,5 +35,8 @@
         color: #cccccc;
       }
     }
+  }
+  @media screen and (min-width: 900px) {
+    width: 60%;
   }
 }
