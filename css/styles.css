@@ -684,17 +684,19 @@ footer {
   width: 100%; }
   #foodItemsFilter .row {
     margin: 0; }
-  #foodItemsFilter .filters-container .filter-button {
+  #foodItemsFilter .filters-container div {
     padding-left: 5px; }
-    #foodItemsFilter .filters-container .filter-button button, #foodItemsFilter .filters-container .filter-button ul {
-      border-color: #6b9ac0;
-      color: #6b9ac0; }
-    #foodItemsFilter .filters-container .filter-button ul > li {
-      color: #6b9ac0; }
-      #foodItemsFilter .filters-container .filter-button ul > li a {
+    #foodItemsFilter .filters-container div .filter-button {
+      padding-left: 0; }
+      #foodItemsFilter .filters-container div .filter-button button, #foodItemsFilter .filters-container div .filter-button ul {
+        border-color: #6b9ac0;
         color: #6b9ac0; }
-    #foodItemsFilter .filters-container .filter-button button {
-      height: 40px; }
+      #foodItemsFilter .filters-container div .filter-button ul > li {
+        color: #6b9ac0; }
+        #foodItemsFilter .filters-container div .filter-button ul > li a {
+          color: #6b9ac0; }
+      #foodItemsFilter .filters-container div .filter-button button {
+        height: 40px; }
   #foodItemsFilter .filters-container .order {
     color: #6b9ac0;
     margin: 0;

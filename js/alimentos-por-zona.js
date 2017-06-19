@@ -88,7 +88,6 @@ var Main = {
 
           arr.forEach(function(el) {
             if (Main.filters.filter(function(filter, b) {
-              console.log(filter);
               return filter.show == el &&
               filter.kind == kind;
             }).length) return false;
@@ -186,23 +185,22 @@ var Main = {
   filter: {
     init:function (data, filters, render) {
       if (filters && filters.length) {
-        console.log(filters);
-        Main.products.filtered = [];
+        Main.products.filtered = Main.products.original;
         filters.forEach(function(filter) {
-          console.log(Main.products.filtered);
-          var arr = Main.products.original.filter(function(a) {
-            if ("number" === typeof a[filter.kind]) a[filter.kind] = a[filter.kind].toString();
+          Main.products.filtered = Main.products.filtered.filter(function(a) {
+            // if ("number" === typeof a[filter.kind])  a[filter.kind] = a[filter.kind].toString();
             return a[filter.kind]
+            .toString()
             .replace(' ','_')
             .toLowerCase() == filter.name;
           });
-          Main.products.filtered = Main.products.filtered.concat(arr);
+          // Main.products.filtered = Main.products.filtered.concat(arr);
         });
       } else {
         Main.products.filtered = data;
       }
       // get filter options.
-      Main.bindActions.filters.init(Main.products.original);
+      Main.bindActions.filters.init(Main.products.filtered);
       if(render) Main.renderFood(Main.products.filtered);
     },
     remove: function(el) {
@@ -351,6 +349,7 @@ var Main = {
 
   doCheckoutMobile: function () {
     document.querySelector('main').classList.toggle('checkout-mobile');
+    document.querySelector('.content-list').classList.toggle('hidden');
   },
 
   updatePrice: function (e, add) {
