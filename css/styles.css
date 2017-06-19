@@ -682,6 +682,8 @@ footer {
 #foodItemsFilter {
   padding-top: 15px;
   width: 100%; }
+  #foodItemsFilter .row {
+    margin: 0; }
   #foodItemsFilter .filters-container {
     padding-right: 5px; }
     #foodItemsFilter .filters-container .filter-button {
