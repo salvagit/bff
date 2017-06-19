@@ -684,29 +684,38 @@ footer {
   width: 100%; }
   #foodItemsFilter .row {
     margin: 0; }
-  #foodItemsFilter .filters-container {
-    padding-right: 5px; }
-    #foodItemsFilter .filters-container .filter-button {
-      padding-left: 5px; }
-      #foodItemsFilter .filters-container .filter-button button {
-        height: 40px; }
-    #foodItemsFilter .filters-container .order {
-      color: #6b9ac0;
-      margin: 0;
-      text-align: right; }
-      #foodItemsFilter .filters-container .order button {
-        width: 40px;
-        height: 40px; }
-      #foodItemsFilter .filters-container .order small {
-        display: inline-block;
-        vertical-align: text-top;
-        margin-right: 3px; }
-      @media screen and (min-width: 900px) {
-        #foodItemsFilter .filters-container .order {
-          padding-right: 0; } }
-    @media screen and (min-width: 900px) {
-      #foodItemsFilter .filters-container {
-        width: 62%; } }
+  #foodItemsFilter .filters-container .filter-button {
+    padding-left: 5px; }
+    #foodItemsFilter .filters-container .filter-button button, #foodItemsFilter .filters-container .filter-button ul {
+      border-color: #6b9ac0;
+      color: #6b9ac0; }
+    #foodItemsFilter .filters-container .filter-button ul > li {
+      color: #6b9ac0; }
+      #foodItemsFilter .filters-container .filter-button ul > li a {
+        color: #6b9ac0; }
+    #foodItemsFilter .filters-container .filter-button button {
+      height: 40px; }
+  #foodItemsFilter .filters-container .order {
+    color: #6b9ac0;
+    margin: 0;
+    text-align: right;
+    padding-right: 20px; }
+    #foodItemsFilter .filters-container .order button {
+      border-color: #6b9ac0;
+      width: 40px;
+      height: 40px; }
+      #foodItemsFilter .filters-container .order button span {
+        color: #6b9ac0; }
+    #foodItemsFilter .filters-container .order small {
+      display: inline-block;
+      vertical-align: text-top;
+      margin-right: 3px; }
+    @media screen and (max-width: 900px) {
+      #foodItemsFilter .filters-container .order {
+        padding-right: 5px; } }
+  @media screen and (min-width: 900px) {
+    #foodItemsFilter .filters-container {
+      width: 62%; } }
   #foodItemsFilter #activeFilters {
     padding-left: 5px; }
     #foodItemsFilter #activeFilters .chip {
