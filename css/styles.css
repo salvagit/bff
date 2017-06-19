@@ -695,7 +695,7 @@ footer {
         padding-right: 15px;
         padding-top: 5px; } }
   #foodItemsFilter #activeFilters .chip {
-    width: 115px;
+    width: auto;
     padding: 5px;
     text-align: center;
     border-radius: 15px;
@@ -706,6 +706,7 @@ footer {
       margin-left: 4px;
       margin-top: 2px; }
     #foodItemsFilter #activeFilters .chip .name {
+      margin-left: 4px;
       font-size: 14px;
       color: #cccccc; }
   @media screen and (min-width: 900px) {
