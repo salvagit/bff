@@ -81,7 +81,7 @@ var Main = {
         var sizes = Main.filter.getSizes(prods);
 
         function drawItems (arr, kind, title) {
-          var ddMenu = document.querySelector('.filter-brand')
+          var ddMenu = document.querySelector('.filter-button')
           .querySelector('.dropdown-menu');
 
           ddMenu.insertAdjacentHTML('beforeend','<li class="dropdown-header">'+title+'</li>');
@@ -110,7 +110,7 @@ var Main = {
           ddMenu.insertAdjacentHTML('beforeend', '<li class="divider"></li>');
         }
         // clean filters.
-        document.querySelector('.filter-brand')
+        document.querySelector('.filter-button')
         .querySelector('.dropdown-menu').innerHTML='';
 
         drawItems(brands, "brand", "Marcas");
@@ -119,9 +119,8 @@ var Main = {
 
       pushFilter: function (e) {
         e.preventDefault();
-        console.log('adding filter ..');
         var f = this.dataset;
-        //
+        // validate.
         if (Main.filters.filter(function(a) {
           return a.kind == f.kind &&
                  a.name == f.name;
@@ -245,7 +244,7 @@ var Main = {
 
   renderFood: function (products) {
     // do transition.
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0);
     if(products.length > this.itemsPerPage) {
       return this.paginate(products);
     }
@@ -263,7 +262,7 @@ var Main = {
     el.getElementsByTagName('a')[0].dataset.prod_id = prod._id;
     el.getElementsByTagName('a')[0].addEventListener('click', this.clickFoodItem);
 
-    el.querySelector('.title').innerHTML = prod.brand + ' ' + prod.line;
+    el.querySelector('.title').innerHTML = prod.brand + ' ' + prod.line + ' ' + prod.size + 'kg';
     el.querySelector('.description').innerHTML = '$' + prod.price;
 
     document.getElementsByClassName('content-list')[0].appendChild(el.getElementsByTagName('a')[0]);

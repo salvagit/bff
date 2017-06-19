@@ -682,36 +682,47 @@ footer {
 #foodItemsFilter {
   padding-top: 15px;
   width: 100%; }
-  #foodItemsFilter .order {
-    color: #6b9ac0;
-    margin: 0;
-    text-align: right; }
-    #foodItemsFilter .order small {
-      display: inline-block;
-      vertical-align: text-top;
-      margin-right: 3px; }
+  #foodItemsFilter .filters-container {
+    padding-right: 5px; }
+    #foodItemsFilter .filters-container .filter-button {
+      padding-left: 5px; }
+      #foodItemsFilter .filters-container .filter-button button {
+        height: 40px; }
+    #foodItemsFilter .filters-container .order {
+      color: #6b9ac0;
+      margin: 0;
+      text-align: right; }
+      #foodItemsFilter .filters-container .order button {
+        width: 40px;
+        height: 40px; }
+      #foodItemsFilter .filters-container .order small {
+        display: inline-block;
+        vertical-align: text-top;
+        margin-right: 3px; }
+      @media screen and (min-width: 900px) {
+        #foodItemsFilter .filters-container .order {
+          padding-right: 0; } }
     @media screen and (min-width: 900px) {
-      #foodItemsFilter .order {
-        padding-right: 15px;
-        padding-top: 5px; } }
-  #foodItemsFilter #activeFilters .chip {
-    width: auto;
-    padding: 5px;
-    text-align: center;
-    border-radius: 15px;
-    float: left; }
-    #foodItemsFilter #activeFilters .chip .close {
-      font-size: 14px;
-      transform: scale(1.5);
-      margin-left: 4px;
-      margin-top: 2px; }
-    #foodItemsFilter #activeFilters .chip .name {
-      margin-left: 4px;
-      font-size: 14px;
-      color: #cccccc; }
-  @media screen and (min-width: 900px) {
-    #foodItemsFilter {
-      width: 60%; } }
+      #foodItemsFilter .filters-container {
+        width: 62%; } }
+  #foodItemsFilter #activeFilters {
+    padding-left: 5px; }
+    #foodItemsFilter #activeFilters .chip {
+      width: auto;
+      padding: 5px;
+      margin: 5px 5px 0 0;
+      text-align: center;
+      border-radius: 15px;
+      float: left; }
+      #foodItemsFilter #activeFilters .chip .close {
+        font-size: 40px;
+        width: 40px;
+        margin-left: -7px;
+        margin-top: -8px; }
+      #foodItemsFilter #activeFilters .chip .name {
+        margin: 6px 4px 0 2px;
+        font-size: 20px;
+        color: #cccccc; }
 
 /**
  * Media Queries.
