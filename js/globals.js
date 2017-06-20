@@ -70,6 +70,7 @@ Main.globals = {
 
   },
   log: function (data) {
+    data.date = new Date();
     $.ajax({
       url: Main.globals.apiUrl + '/logs/',
       method: 'post',
