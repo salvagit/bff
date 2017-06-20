@@ -1,3 +1,30 @@
+// This example displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
+
+var autocomplete;
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('addrModal')),
+      {types: ['geocode'],
+      componentRestrictions: {country: 'ar'}});
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', function (a,b) {
+    // Get the place details from the autocomplete object.
+    var place = this.getPlace();
+    Main.location = {
+      latitude: place.geometry.location.lat(),
+      longitude: place.geometry.location.lng()
+    };
+    Main.submitForm();
+    console.log(Main);
+  });
+}
+
 function getParameterByName(name, url) {
     if (!url) {
       url = window.location.href;
@@ -50,8 +77,10 @@ var Main = {
       this.sorts.init();
     },
     checkout: function () {
-      function doCheckout(e) {
-        e.preventDefault();
+
+      function doCheckout(userData) {
+        console.log(userData);
+        // e.preventDefault();
         var apiUrl = ('pichi.local' === window.location.hostname) ?
         'http://localhost:8086' :
         'https://pichifood.herokuapp.com';
@@ -67,7 +96,8 @@ var Main = {
               'items': items,
               'address': Main.addr,
               'loc': Main.loc,
-              'mp_data': data
+              'mp_data': data,
+              'user': userData
             });
             window.location = data.redirectUrl;
           },
@@ -76,9 +106,49 @@ var Main = {
           }
         });
       }
+
+      function openModal () {
+        $modal = $($('#pichickoutModal').html());
+
+        $modal
+        .on('hidden.bs.modal', function(){
+          document.querySelector('body').removeChild(document.querySelector('.modal-backdrop'));
+          document.querySelector('body').removeChild(document.querySelector('#modal'));
+        })
+        .on('shown.bs.modal', function(e) {
+
+          document.querySelector('#addrModalCheckout').value = Main.addr;
+
+          var autocomplete3 = new google.maps.places.Autocomplete(
+          document.querySelector('#addrModalCheckout'), {
+            types: ['geocode'],
+            componentRestrictions: {country: 'ar'}
+          });
+
+          document.getElementById('buyFood').addEventListener('click', function(e) {
+            e.preventDefault();
+            var submitForm = new Event('submit');
+            document.getElementById('pichickout').dispatchEvent(submitForm);
+          });
+          document.getElementById('pichickout').addEventListener('submit', function(e) {
+            var userData = {};
+            this.querySelectorAll('*>*').forEach(function(el){
+              if(el.name) userData[el.name] = el.value;
+            });
+            doCheckout(userData);
+          });
+
+        })
+        .modal('show');
+      }
+
       document.querySelectorAll('.btn-compra').forEach(function(el) {
-        el.addEventListener('click', doCheckout);
+        el.addEventListener('click', function(e){
+          openModal();
+        });
       });
+
+
     },
     // bind filters
     filters: {

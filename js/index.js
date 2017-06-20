@@ -47,7 +47,6 @@ var Main = {
       this.querySelectorAll('* > *').forEach(function(el) {
         if (el && el.name) data[el.name] = el.value;
       });
-      console.log(data);
       $.ajax({
         url: Main.globals.apiUrl + '/contact/',
         method: 'post',
