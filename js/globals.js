@@ -1,10 +1,16 @@
 
 Main.globals = {
+
+  apiUrl:'',
+
   init: function () {
-    'use strict';
+    this.apiUrl = ('pichi.local' === window.location.hostname) ?
+                      'http://localhost:8086' :
+                      'https://pichifood.herokuapp.com';
     this.bindActions();
   },
   bindActions: function() {
+    if (document.getElementById('getModalVete'))
     document.getElementById('getModalVete').addEventListener('click', Main.globals.openVeteModal);
   },
   openVeteModal: function (e) {
@@ -34,11 +40,13 @@ Main.globals = {
     })
     .modal('show');
   },
+
   doSave:function (e) {
     e.preventDefault();
     var submitForm = new Event('submit');
     document.getElementById('saveVeteForm').dispatchEvent(submitForm);
   },
+
   saveVete: function (e) {
 
     e.preventDefault();
@@ -50,12 +58,8 @@ Main.globals = {
 
     mock.comments = document.querySelector('#comments').value;
 
-    var apiUrl = ('localhost' === window.location.hostname) ?
-                        'http://localhost:8086' :
-                        'https://pichifood.herokuapp.com';
-
     $.ajax({
-      url: apiUrl + '/createByContact/',
+      url: Main.globals.apiUrl + '/createByContact/',
       method: 'post',
       data: mock,
       success: function(status, data) {
@@ -64,9 +68,20 @@ Main.globals = {
     });
     $('#modal').modal('hide');
 
+  },
+  log: function (data) {
+    $.ajax({
+      url: Main.globals.apiUrl + '/logs/',
+      method: 'post',
+      data: data,
+      success: function(status, data) {
+        console.log(status, data);
+      }
+    });
   }
 };
 
 (function () {
+  'use strict';
   Main.globals.init();
 })();

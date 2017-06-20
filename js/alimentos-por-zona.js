@@ -55,11 +55,20 @@ var Main = {
         var apiUrl = ('pichi.local' === window.location.hostname) ?
         'http://localhost:8086' :
         'https://pichifood.herokuapp.com';
+
+        var items = Main.getLocalStorageObject();
         $.ajax({
           url: apiUrl + '/checkout',
           method: 'post',
-          data: {items: Main.getLocalStorageObject()},
+          data: {items: items},
           success: function (data) {
+            Main.globals.log({
+              'name': 'checkout',
+              'items': items,
+              'address': Main.addr,
+              'loc': Main.loc,
+              'mp_data': data
+            });
             window.location = data.redirectUrl;
           },
           error: function (err) {
