@@ -57,7 +57,10 @@ var Main = {
           subject: data.subject,
           message: data.message
         },
-        success: function (data) {console.log(data);},
+        success: function (data) {
+          console.log(data);
+          document.querySelectorAll('#pichiContact')[0].reset();
+        },
         error: function (err) {console.error(err);}
       });
     });
