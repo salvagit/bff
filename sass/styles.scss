@@ -232,9 +232,21 @@ main.content {
 
 .content-banner {
   // box-shadow: inset 0 -50px 50px 0 rgba(0, 0, 0, .25);
-  position: relative;
+  width: 100%;
   height: 200px;
+  position: relative;
   overflow-y: hidden;
+  background: url('../images/image5.jpg') no-repeat;
+  background-size: cover;
+  @media screen and (min-width: 415px) {
+    .cover{
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.4);
+    }
+    background-position: right;
+    background-size: contain;
+  }
 }
 
 .content-banner-title {
