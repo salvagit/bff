@@ -58,12 +58,16 @@ var Main = {
           message: data.message
         },
         success: function (data) {
-          console.log(data);
+          console.info(data);
           document.querySelectorAll('#pichiContact')[0].reset();
         },
         error: function (err) {console.error(err);}
       });
     });
+  },
+  submitForm: function () {
+    var submitForm = new Event('submit');
+    this.form.dispatchEvent(submitForm);
   },
   pingService: function() {
     $.get('https://pichifood.herokuapp.com/getFoodByLocation/-58.44537639999999/-34.5496618',
