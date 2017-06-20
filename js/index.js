@@ -40,16 +40,27 @@ var Main = {
                          encodeURI(this.getElementsByTagName('input')[0].value) +
                          '&lat=' + Main.location.latitude + '&lng=' + Main.location.longitude;
     });
-/*
-    document.querySelector('.search-food').addEventListener('click', function(e){
+
+    document.querySelector('#pichiContact').addEventListener('submit', function(e){
       e.preventDefault();
-      Main.submitForm();
+      var data = [];
+      this.querySelectorAll('* > *').forEach(function(el) {
+        if (el && el.name) data[el.name] = el.value;
+      });
+      console.log(data);
+      $.ajax({
+        url: Main.globals.apiUrl + '/contact/',
+        method: 'post',
+        data: {
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message
+        },
+        success: function (data) {console.log(data);},
+        error: function (err) {console.error(err);}
+      });
     });
-*/
-  },
-  submitForm: function () {
-    var submitForm = new Event('submit');
-    this.form.dispatchEvent(submitForm);
   },
   pingService: function() {
     $.get('https://pichifood.herokuapp.com/getFoodByLocation/-58.44537639999999/-34.5496618',
